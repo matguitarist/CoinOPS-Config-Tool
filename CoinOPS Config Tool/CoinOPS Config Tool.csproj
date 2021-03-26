@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1D86BFF6-ABB8-49B0-A9F3-7DA52C3C3AFE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CoinOPS_Config_Tool</RootNamespace>
+    <AssemblyName>CoinOPS Config Tool</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AltoHttp, Version=1.0.7671.39700, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AltoHttp.1.5.0\lib\net45\AltoHttp.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroSet UI, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroSet_UI.2.0.0\lib\net45\MetroSet UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FilesManagement\Data.cs" />
+    <Compile Include="FilesManagement\Extractor.cs" />
+    <Compile Include="FilesManagement\filesDownloader.cs" />
+    <Compile Include="FilesManagement\SystemsAndTools.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlManager.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="collections\Arcade Light Gun.7z" />
+    <None Include="collections\Arcade.7z" />
+    <None Include="collections\Atari 2600.7z" />
+    <None Include="collections\Atari 5200.7z" />
+    <None Include="collections\Atari 7800.7z" />
+    <None Include="collections\Atari Jaguar.7z" />
+    <None Include="collections\ColecoVision.7z" />
+    <None Include="collections\Game Boy Advance.7z" />
+    <None Include="collections\Game Boy Color.7z" />
+    <None Include="collections\Microsoft Xbox 360.7z" />
+    <None Include="collections\Microsoft Xbox.7z" />
+    <None Include="collections\NEC TurboGrafx16 CD.7z" />
+    <None Include="collections\NEC TurboGrafx16.7z" />
+    <None Include="collections\Nintendo 3DS.7z" />
+    <None Include="collections\Nintendo 64.7z" />
+    <None Include="collections\Nintendo DS.7z" />
+    <None Include="collections\Nintendo Entertainment System.7z" />
+    <None Include="collections\Nintendo Gamecube.7z" />
+    <None Include="collections\Nintendo SNES.7z" />
+    <None Include="collections\Nintendo Switch.7z" />
+    <None Include="collections\Nintendo Virtual Boy.7z" />
+    <None Include="collections\Nintendo Wii U.7z" />
+    <None Include="collections\Nintendo Wii.7z" />
+    <None Include="collections\Sega 32X.7z" />
+    <None Include="collections\Sega CD.7z" />
+    <None Include="collections\Sega Dreamcast.7z" />
+    <None Include="collections\Sega Genesis.7z" />
+    <None Include="collections\Sega Master System.7z" />
+    <None Include="collections\Sony Playstation 2.7z" />
+    <None Include="collections\Sony Playstation.7z" />
+    <None Include="collections\Sony PSP.7z" />
+    <None Include="launchers\3DO.conf" />
+    <None Include="launchers\American Laser Games.conf" />
+    <None Include="launchers\Amiga.conf" />
+    <None Include="launchers\AMSTRAD.conf" />
+    <None Include="launchers\Arcade Light Gun.conf" />
+    <None Include="launchers\Arcade.conf" />
+    <None Include="launchers\Atari 2600.conf" />
+    <None Include="launchers\Atari 5200.conf" />
+    <None Include="launchers\Atari 7800.conf" />
+    <None Include="launchers\Atari Jaguar.conf" />
+    <None Include="launchers\C64.conf" />
+    <None Include="launchers\C64alt.conf" />
+    <None Include="launchers\ColecoVision.conf" />
+    <None Include="launchers\Commodore Amiga CD32.conf" />
+    <None Include="launchers\Dolphin F-Zero.conf" />
+    <None Include="launchers\Dolphin Mario Kart.conf" />
+    <None Include="launchers\Dolphin Striker.conf" />
+    <None Include="launchers\Future Pinball.conf" />
+    <None Include="launchers\Game Boy Advance.conf" />
+    <None Include="launchers\Game Boy Color.conf" />
+    <None Include="launchers\Game Boy.conf" />
+    <None Include="launchers\LaserDisc.conf" />
+    <None Include="launchers\mame.conf" />
+    <None Include="launchers\mame_retroarch.conf" />
+    <None Include="launchers\Microsoft Xbox 360.conf" />
+    <None Include="launchers\Microsoft Xbox.conf" />
+    <None Include="launchers\MODEL2.conf" />
+    <None Include="launchers\MODEL3.conf" />
+    <None Include="launchers\MSX Cart.conf" />
+    <None Include="launchers\MSX Disk.conf" />
+    <None Include="launchers\NEC TurboGrafx16 CD.conf" />
+    <None Include="launchers\NEC TurboGrafx16.conf" />
+    <None Include="launchers\NeoGeo CD.conf" />
+    <None Include="launchers\NES HD.conf" />
+    <None Include="launchers\Nintendo 3DS.conf" />
+    <None Include="launchers\Nintendo 64.conf" />
+    <None Include="launchers\Nintendo DS.conf" />
+    <None Include="launchers\Nintendo Entertainment System.conf" />
+    <None Include="launchers\Nintendo Gamecube.conf" />
+    <None Include="launchers\Nintendo SNES.conf" />
+    <None Include="launchers\Nintendo Switch.conf" />
+    <None Include="launchers\Nintendo Virtual Boy.conf" />
+    <None Include="launchers\Nintendo Wii U.conf" />
+    <None Include="launchers\Nintendo Wii.conf" />
+    <None Include="launchers\PC Games.conf" />
+    <None Include="launchers\Pinball FX2.conf" />
+    <None Include="launchers\Pinball FX3.conf" />
+    <None Include="launchers\PinballArcade.conf" />
+    <None Include="launchers\Retrowave.conf" />
+    <None Include="launchers\Ringedge.conf" />
+    <None Include="launchers\Sammy Atomiswave.conf" />
+    <None Include="launchers\Sega 32X.conf" />
+    <None Include="launchers\Sega CD.conf" />
+    <None Include="launchers\Sega Dreamcast.conf" />
+    <None Include="launchers\Sega Game Gear.conf" />
+    <None Include="launchers\Sega Genesis.conf" />
+    <None Include="launchers\Sega Hikaru.conf" />
+    <None Include="launchers\Sega Master System.conf" />
+    <None Include="launchers\Sega Model 2.conf" />
+    <None Include="launchers\Sega Model 3.conf" />
+    <None Include="launchers\Sega Naomi.conf" />
+    <None Include="launchers\Sega Saturn.conf" />
+    <None Include="launchers\SNES MSU-1.conf" />
+    <None Include="launchers\Sony Playstation 2.conf" />
+    <None Include="launchers\Sony Playstation 3.conf" />
+    <None Include="launchers\Sony Playstation.conf" />
+    <None Include="launchers\Sony PSP HD.conf" />
+    <None Include="launchers\Sony PSP.conf" />
+    <None Include="launchers\SPECTRUM.conf" />
+    <None Include="launchers\Vectrex.conf" />
+    <None Include="launchers\Zinc.conf" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Tools\CUE to CHD.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="7za.dll" />
+    <Content Include="7za.exe" />
+    <Content Include="7zxa.dll" />
+    <Content Include="Tools\chdman.exe" />
+    <Content Include="Tools\Max CSO\maxcso.exe" />
+    <Content Include="Tools\Max CSO\maxcsoGUI.exe" />
+    <Content Include="Tools\TrrntZip.NET.exe" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
