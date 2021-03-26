@@ -131,7 +131,7 @@ namespace Main
             this.TabSelection.ItemSize = new System.Drawing.Size(100, 38);
             this.TabSelection.Location = new System.Drawing.Point(50, 100);
             this.TabSelection.Name = "TabSelection";
-            this.TabSelection.SelectedIndex = 2;
+            this.TabSelection.SelectedIndex = 1;
             this.TabSelection.SelectedTextColor = System.Drawing.Color.White;
             this.TabSelection.Size = new System.Drawing.Size(800, 450);
             this.TabSelection.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
@@ -164,7 +164,7 @@ namespace Main
             this.TabMain.TabIndex = 0;
             this.TabMain.Text = "Main";
             this.TabMain.ThemeAuthor = "Narwin";
-            this.TabMain.ThemeName = "MetroLight";
+            this.TabMain.ThemeName = "MetroLite";
             this.TabMain.ToolTipText = null;
             // 
             // txtMainEmuPath
@@ -300,7 +300,7 @@ namespace Main
             this.TabSystem.TabIndex = 3;
             this.TabSystem.Text = "Systems";
             this.TabSystem.ThemeAuthor = "Narwin";
-            this.TabSystem.ThemeName = "MetroLight";
+            this.TabSystem.ThemeName = "MetroLite";
             this.TabSystem.ToolTipText = null;
             // 
             // bntSysAddSystem
@@ -364,8 +364,42 @@ namespace Main
             this.cbSysSelSystem.IsDerivedStyle = true;
             this.cbSysSelSystem.ItemHeight = 20;
             this.cbSysSelSystem.Items.AddRange(new object[] {
+            "Arcade",
+            "Arcade Light Gun",
+            "Atari 2600",
+            "Atari 5200",
+            "Atari 7800",
+            "Atari Jaguar",
+            "ColecoVision",
             "Game Boy",
-            "Game Boy Advance"});
+            "Game Boy Color",
+            "Game Boy Advance",
+            "Nintendo DS",
+            "Nintendo 3DS",
+            "Nintendo Entertainment System",
+            "Nintendo SNES",
+            "Nintendo 64",
+            "Nintendo Gamecube",
+            "Nintendo Wii",
+            "Nintendo Wii Virtual Console",
+            "Nintendo Wii U",
+            "Nintendo Switch",
+            "Sega Master System",
+            "Sega Genesis",
+            "Sega 32X",
+            "Sega CD",
+            "Sega Saturn",
+            "Sega Dreamcast",
+            "Sega Game Gear",
+            "Sony Playstation",
+            "Sony Playstation 2",
+            "Sony Playstation 3",
+            "Sony PSP",
+            "NEC TurboGrafx16",
+            "NEC TurboGrafx16 CD",
+            "Microsoft Xbox",
+            "Microsoft Xbox 360",
+            "PC Games"});
             this.cbSysSelSystem.Location = new System.Drawing.Point(20, 80);
             this.cbSysSelSystem.MaxDropDownItems = 12;
             this.cbSysSelSystem.Name = "cbSysSelSystem";
@@ -410,7 +444,7 @@ namespace Main
             this.TabEmulators.TabIndex = 1;
             this.TabEmulators.Text = "Emulators";
             this.TabEmulators.ThemeAuthor = "Narwin";
-            this.TabEmulators.ThemeName = "MetroLight";
+            this.TabEmulators.ThemeName = "MetroLite";
             this.TabEmulators.ToolTipText = null;
             // 
             // BtnEmuExtract
@@ -731,12 +765,18 @@ namespace Main
             this.cbEmuSelecEmulator.IsDerivedStyle = true;
             this.cbEmuSelecEmulator.ItemHeight = 20;
             this.cbEmuSelecEmulator.Items.AddRange(new object[] {
-            "Mame",
             "RetroArch",
+            "Mame",
+            "Dolphin",
+            "Cemu",
+            "Yuzu",
             "DuckStation",
             "PCSX2",
             "Rpcs3",
-            "PPSSPP"});
+            "PPSSPP",
+            "Cxbx-Reloaded",
+            "Xemu",
+            "Xenia"});
             this.cbEmuSelecEmulator.Location = new System.Drawing.Point(20, 70);
             this.cbEmuSelecEmulator.MaxDropDownItems = 12;
             this.cbEmuSelecEmulator.Name = "cbEmuSelecEmulator";
@@ -790,7 +830,7 @@ namespace Main
             this.TabTools.TabIndex = 2;
             this.TabTools.Text = "Tools";
             this.TabTools.ThemeAuthor = "Narwin";
-            this.TabTools.ThemeName = "MetroLight";
+            this.TabTools.ThemeName = "MetroLite";
             this.TabTools.ToolTipText = null;
             // 
             // btnToolsInstallRuntime
