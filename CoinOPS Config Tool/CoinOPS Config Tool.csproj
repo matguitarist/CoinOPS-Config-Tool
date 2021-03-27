@@ -56,10 +56,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FilesManagement\Data.cs" />
-    <Compile Include="FilesManagement\Extractor.cs" />
-    <Compile Include="FilesManagement\filesDownloader.cs" />
-    <Compile Include="FilesManagement\SystemsAndTools.cs" />
+    <Compile Include="FilesManagement\Data.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FilesManagement\Extractor.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FilesManagement\filesDownloader.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FilesManagement\SystemsAndTools.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,115 +82,314 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="collections\Arcade Light Gun.7z" />
-    <None Include="collections\Arcade.7z" />
-    <None Include="collections\Atari 2600.7z" />
-    <None Include="collections\Atari 5200.7z" />
-    <None Include="collections\Atari 7800.7z" />
-    <None Include="collections\Atari Jaguar.7z" />
-    <None Include="collections\ColecoVision.7z" />
-    <None Include="collections\Game Boy Advance.7z" />
-    <None Include="collections\Game Boy Color.7z" />
-    <None Include="collections\Microsoft Xbox 360.7z" />
-    <None Include="collections\Microsoft Xbox.7z" />
-    <None Include="collections\NEC TurboGrafx16 CD.7z" />
-    <None Include="collections\NEC TurboGrafx16.7z" />
-    <None Include="collections\Nintendo 3DS.7z" />
-    <None Include="collections\Nintendo 64.7z" />
-    <None Include="collections\Nintendo DS.7z" />
-    <None Include="collections\Nintendo Entertainment System.7z" />
-    <None Include="collections\Nintendo Gamecube.7z" />
-    <None Include="collections\Nintendo SNES.7z" />
-    <None Include="collections\Nintendo Switch.7z" />
-    <None Include="collections\Nintendo Virtual Boy.7z" />
-    <None Include="collections\Nintendo Wii U.7z" />
-    <None Include="collections\Nintendo Wii.7z" />
-    <None Include="collections\Sega 32X.7z" />
-    <None Include="collections\Sega CD.7z" />
-    <None Include="collections\Sega Dreamcast.7z" />
-    <None Include="collections\Sega Genesis.7z" />
-    <None Include="collections\Sega Master System.7z" />
-    <None Include="collections\Sony Playstation 2.7z" />
-    <None Include="collections\Sony Playstation.7z" />
-    <None Include="collections\Sony PSP.7z" />
-    <None Include="launchers\3DO.conf" />
-    <None Include="launchers\American Laser Games.conf" />
-    <None Include="launchers\Amiga.conf" />
-    <None Include="launchers\AMSTRAD.conf" />
-    <None Include="launchers\Arcade Light Gun.conf" />
-    <None Include="launchers\Arcade.conf" />
-    <None Include="launchers\Atari 2600.conf" />
-    <None Include="launchers\Atari 5200.conf" />
-    <None Include="launchers\Atari 7800.conf" />
-    <None Include="launchers\Atari Jaguar.conf" />
-    <None Include="launchers\C64.conf" />
-    <None Include="launchers\C64alt.conf" />
-    <None Include="launchers\ColecoVision.conf" />
-    <None Include="launchers\Commodore Amiga CD32.conf" />
-    <None Include="launchers\Dolphin F-Zero.conf" />
-    <None Include="launchers\Dolphin Mario Kart.conf" />
-    <None Include="launchers\Dolphin Striker.conf" />
-    <None Include="launchers\Future Pinball.conf" />
-    <None Include="launchers\Game Boy Advance.conf" />
-    <None Include="launchers\Game Boy Color.conf" />
-    <None Include="launchers\Game Boy.conf" />
-    <None Include="launchers\LaserDisc.conf" />
-    <None Include="launchers\mame.conf" />
-    <None Include="launchers\mame_retroarch.conf" />
-    <None Include="launchers\Microsoft Xbox 360.conf" />
-    <None Include="launchers\Microsoft Xbox.conf" />
-    <None Include="launchers\MODEL2.conf" />
-    <None Include="launchers\MODEL3.conf" />
-    <None Include="launchers\MSX Cart.conf" />
-    <None Include="launchers\MSX Disk.conf" />
-    <None Include="launchers\NEC TurboGrafx16 CD.conf" />
-    <None Include="launchers\NEC TurboGrafx16.conf" />
-    <None Include="launchers\NeoGeo CD.conf" />
-    <None Include="launchers\NES HD.conf" />
-    <None Include="launchers\Nintendo 3DS.conf" />
-    <None Include="launchers\Nintendo 64.conf" />
-    <None Include="launchers\Nintendo DS.conf" />
-    <None Include="launchers\Nintendo Entertainment System.conf" />
-    <None Include="launchers\Nintendo Gamecube.conf" />
-    <None Include="launchers\Nintendo SNES.conf" />
-    <None Include="launchers\Nintendo Switch.conf" />
-    <None Include="launchers\Nintendo Virtual Boy.conf" />
-    <None Include="launchers\Nintendo Wii U.conf" />
-    <None Include="launchers\Nintendo Wii.conf" />
-    <None Include="launchers\PC Games.conf" />
-    <None Include="launchers\Pinball FX2.conf" />
-    <None Include="launchers\Pinball FX3.conf" />
-    <None Include="launchers\PinballArcade.conf" />
-    <None Include="launchers\Retrowave.conf" />
-    <None Include="launchers\Ringedge.conf" />
-    <None Include="launchers\Sammy Atomiswave.conf" />
-    <None Include="launchers\Sega 32X.conf" />
-    <None Include="launchers\Sega CD.conf" />
-    <None Include="launchers\Sega Dreamcast.conf" />
-    <None Include="launchers\Sega Game Gear.conf" />
-    <None Include="launchers\Sega Genesis.conf" />
-    <None Include="launchers\Sega Hikaru.conf" />
-    <None Include="launchers\Sega Master System.conf" />
-    <None Include="launchers\Sega Model 2.conf" />
-    <None Include="launchers\Sega Model 3.conf" />
-    <None Include="launchers\Sega Naomi.conf" />
-    <None Include="launchers\Sega Saturn.conf" />
-    <None Include="launchers\SNES MSU-1.conf" />
-    <None Include="launchers\Sony Playstation 2.conf" />
-    <None Include="launchers\Sony Playstation 3.conf" />
-    <None Include="launchers\Sony Playstation.conf" />
-    <None Include="launchers\Sony PSP HD.conf" />
-    <None Include="launchers\Sony PSP.conf" />
-    <None Include="launchers\SPECTRUM.conf" />
-    <None Include="launchers\Vectrex.conf" />
-    <None Include="launchers\Zinc.conf" />
+    <None Include="collections\Arcade Light Gun.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Arcade.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Atari 2600.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Atari 5200.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Atari 7800.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Atari Jaguar.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\ColecoVision.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Game Boy Advance.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Game Boy Color.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Microsoft Xbox 360.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Microsoft Xbox.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\NEC TurboGrafx16 CD.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\NEC TurboGrafx16.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Nintendo 3DS.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Nintendo 64.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Nintendo DS.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Nintendo Entertainment System.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Nintendo Gamecube.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Nintendo SNES.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Nintendo Switch.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Nintendo Virtual Boy.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Nintendo Wii U.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Nintendo Wii.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Sega 32X.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Sega CD.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Sega Dreamcast.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Sega Genesis.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Sega Master System.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Sony Playstation 2.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Sony Playstation.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="collections\Sony PSP.7z">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\3DO.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\American Laser Games.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Amiga.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\AMSTRAD.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Arcade Light Gun.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Arcade.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Atari 2600.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Atari 5200.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Atari 7800.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Atari Jaguar.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\C64.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\C64alt.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\ColecoVision.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Commodore Amiga CD32.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Dolphin F-Zero.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Dolphin Mario Kart.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Dolphin Striker.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Future Pinball.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Game Boy Advance.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Game Boy Color.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Game Boy.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\LaserDisc.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\mame.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\mame_retroarch.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Microsoft Xbox 360.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Microsoft Xbox.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\MODEL2.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\MODEL3.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\MSX Cart.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\MSX Disk.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\NEC TurboGrafx16 CD.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\NEC TurboGrafx16.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\NeoGeo CD.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\NES HD.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Nintendo 3DS.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Nintendo 64.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Nintendo DS.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Nintendo Entertainment System.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Nintendo Gamecube.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Nintendo SNES.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Nintendo Switch.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Nintendo Virtual Boy.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Nintendo Wii U.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Nintendo Wii.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\PC Games.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Pinball FX2.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Pinball FX3.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\PinballArcade.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Retrowave.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Ringedge.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sammy Atomiswave.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sega 32X.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sega CD.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sega Dreamcast.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sega Game Gear.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sega Genesis.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sega Hikaru.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sega Master System.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sega Model 2.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sega Model 3.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sega Naomi.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sega Saturn.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\SNES MSU-1.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sony Playstation 2.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sony Playstation 3.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sony Playstation.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sony PSP HD.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Sony PSP.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\SPECTRUM.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Vectrex.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="launchers\Zinc.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -193,19 +400,258 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Tools\CUE to CHD.bat" />
+    <None Include="Tools\CUE to CHD.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="7za.dll" />
-    <Content Include="7za.exe" />
-    <Content Include="7zxa.dll" />
-    <Content Include="Tools\chdman.exe" />
-    <Content Include="Tools\Max CSO\maxcso.exe" />
-    <Content Include="Tools\Max CSO\maxcsoGUI.exe" />
-    <Content Include="Tools\TrrntZip.NET.exe" />
+    <Content Include="7za.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="7za.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="7zxa.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\- Castlevania Collection.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\- Mario Kart Collection.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\- Mega Man Collection.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\- Metroid Collection.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\- Sonic Collection.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\- Zelda Collection.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Arcade Light Gun.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Arcade.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Game Boy Advance.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Microsoft Xbox 360.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Microsoft Xbox.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\NES HD.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Nintendo 3DS.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Nintendo 64.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Nintendo DS.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Nintendo Entertainment System.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Nintendo Gamecube.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Nintendo SNES.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Nintendo Switch.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Nintendo Wii U.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Nintendo Wii.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\PS Vita.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\PSP.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Sega Dreamcast.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Sega Genesis.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\SNES MSU-1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Sony Playstation 2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Sony Playstation 3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Sony Playstation.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\TRIFORCE.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\Wii Ware.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\ZZ Racing.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\ZZ Racing2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Images\ZZ RPG Limitbreak.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\- Castlevania Collection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\- Final Fantasy Collection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\- Mario Kart Collection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\- Mega Man Collection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\- Metroid Collection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\- Mortal Kombat Collection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\- Sonic Collection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\- Zelda Collection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\3DS.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Arcade Light Gun.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Arcade.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Atari 7800.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Atari Jaguar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\ColecoVision.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Game Boy Advance.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Mame.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Microsoft Xbox 360.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Microsoft Xbox.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\NEC TurboGrafx16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\NES HD.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Nintendo 64.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Nintendo DS.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Nintendo Entertainment System.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Nintendo Gamecube.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Nintendo SNES.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Nintendo Switch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Nintendo Wii U.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Nintendo Wii.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\PC Games.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\PSP.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Sega 32X.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Sega CD.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Sega Dreamcast.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\SNES MSU-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Sony Playstation 2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\Sony Playstation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\TRIFORCE.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\ZZ Racing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\ZZ Racing2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Systems_Logos\ZZ RPG Limitbreak.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\chdman.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\Max CSO\maxcso.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\Max CSO\maxcsoGUI.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TrrntZip.NET.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
