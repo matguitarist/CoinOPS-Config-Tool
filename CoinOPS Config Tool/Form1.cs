@@ -27,29 +27,31 @@ namespace Main
         // Path variable
         private string systemPathFolder;
 
-        private readonly string mainLauncherPath = Directory.GetCurrentDirectory() + "\\launchers\\";
+        private readonly string sourceLauncherPath = Directory.GetCurrentDirectory() + "\\launchers\\";
         private readonly string mainToolsPath = Directory.GetCurrentDirectory() + "\\Tools\\";
-        private readonly string mainCollectionPath = Directory.GetCurrentDirectory() + "\\collections\\";
-
+        private readonly string sourceCollectionPath = Directory.GetCurrentDirectory() + "\\collections\\";
+        private readonly string sourceSystemImagePath = Directory.GetCurrentDirectory() + "\\Systems_Images\\";
+        private string sourceSystemLogoPath = Directory.GetCurrentDirectory() + "\\Systems_Logos\\";
         public string copsPath;
         public string emulatorsPath;
         private string toolsTargetPath;
-        private readonly string collectionsTargetPath;
-        private readonly string launcherTargetPath;
+        private string collectionsTargetPath;
+        private string launcherTargetPath;
 
         private string systemName;
+        private string fileToDisplay;
+        private string logoToDisplay;
         public string selectedEmuName;
 
-        //Temp bariable
-        public readonly string tempFolder = Path.GetTempPath();
-        //private static readonly int daytoKeep = 3;
+        //Temp Variable
+        private readonly string tempFolder = Path.GetTempPath();
+
 
         // Extracting Variable
         public string zipSource;
         public string targetFolder;
-    
 
-        
+
         public MainWindows()
         {
             InitializeComponent();
@@ -71,6 +73,7 @@ namespace Main
         }
 
 
+
         // Browse coinOPS Path
         private void BtnMainBrowse_Click(object sender, EventArgs e)
         {
@@ -79,7 +82,57 @@ namespace Main
             copsPath = tbMainCopsPath.Text;
             emulatorsPath = copsPath + "\\emulators\\";
             tbMainEmuTxtPath.Text = emulatorsPath;
+            collectionsTargetPath = copsPath + "\\collections\\";
+            tbMainColTxtPath.Text = collectionsTargetPath;
+            launcherTargetPath = copsPath + "\\launchers.windows\\";
+            tbMainLauncherTxtPath.Text = launcherTargetPath;
         }
+
+        private void BtnEmuOpen_Click(object sender, EventArgs e)
+        {
+            // Determine whether the directory exists.
+            if (!Directory.Exists(emulatorsPath))
+            {
+                MessageBox.Show("Folder not found.");
+                return;
+            }
+
+            else
+            {
+                Process.Start(emulatorsPath);
+            }
+
+        }
+
+        private void BtnCollectonOpen_Click(object sender, EventArgs e)
+        { 
+            if (!Directory.Exists(collectionsTargetPath))
+            {
+                MessageBox.Show("Folder not found.");
+                return;
+            }
+
+            else
+            {
+                Process.Start(collectionsTargetPath);
+            }
+        }
+
+        private void BtnLauncherOpen_Click(object sender, EventArgs e)
+        {
+            if (!Directory.Exists(collectionsTargetPath))
+            {
+                MessageBox.Show("Folder not found.");
+                return;
+            }
+
+            else
+            {
+                Process.Start(collectionsTargetPath);
+            }
+        }
+
+
 
         // Settings Buttons
         private void SettingButton_MouseHover(object sender, EventArgs e)
@@ -97,35 +150,6 @@ namespace Main
             //To do
         }
 
-
-
-        // Add new system
-         private void BntSysAddSystem_Click(object sender, EventArgs e)
-        {
-            systemName = cbSysSelSystem.Text;
-
-            zipSource = mainCollectionPath + systemName + ".7z";
-            systemPathFolder = mainCollectionPath + systemName;
-
-
-            {
-                // Determine whether the directory exists.
-                if (Directory.Exists(systemPathFolder))
-                {
-                    MessageBox.Show("That system directory exists already.");
-                    return;
-                }
-                else
-                {
-                    targetFolder = copsPath;
-                    CopySystemLauncher();
-                    extractor.ExtractFile(zipSource, targetFolder);
-                    MessageBox.Show("All directories were created successfully");
-                    Process.Start(collectionsTargetPath + "\\" + systemName);
-                }
-
-            }
-        }
 
 
         // Save Button to XML
@@ -150,6 +174,47 @@ namespace Main
 
 
 
+        // Add new system
+         private void BntSysAddSystem_Click(object sender, EventArgs e)
+        {
+            systemName = cbSysSelSystem.Text;
+
+            zipSource = sourceCollectionPath + systemName + ".7z";
+            
+            systemPathFolder = sourceCollectionPath + systemName;
+
+
+            {
+                // Determine whether the directory exists.
+                if (Directory.Exists(systemPathFolder))
+                {
+                    MessageBox.Show("That system directory exists already.");
+                    return;
+                }
+                else
+                {
+                    targetFolder = copsPath;
+                    collectionsTargetPath = copsPath + "\\collections\\";
+                    string openDir = collectionsTargetPath + systemName;
+                    CopySystemLauncher();
+                    extractor.ExtractFile(zipSource, targetFolder);
+                    MessageBox.Show("All directories were created successfully");
+                    if (Directory.Exists(openDir))
+                    {
+                        Process.Start(openDir);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The target directory not found");
+                    }
+
+                }
+
+            }
+        }
+
+
+
         // Download buttons
         private void BtnEmuDownload_Click(object sender, EventArgs e)
         {
@@ -165,8 +230,8 @@ namespace Main
             filesDownloader.DownloadingFile();
             if (!filesDownloader.isDownloading)
             {
-                zipSource = tempFolder + sysAndTools.downloadedFileName;
-                targetFolder = emulatorsPath + selectedEmuName;
+                zipSource = sysAndTools.downloadedFileName;
+                //targetFolder = emulatorsPath + selectedEmuName;
                 extractor.ExtractFile(zipSource, targetFolder);
             }
         }
@@ -191,9 +256,10 @@ namespace Main
         private void BtnEmuExtract_Click(object sender, EventArgs e)
         {
             {
-                zipSource = tempFolder + sysAndTools.downloadedFileName;
-                targetFolder = emulatorsPath + selectedEmuName;
-                extractor.ExtractFile(zipSource, targetFolder);
+                sysAndTools.SetEmuDownloadPath();
+                zipSource = sysAndTools.downloadedFileName;
+
+                extractor.ExtractFile(zipSource, tbEmuFolderDestination.Text);
             }
         }
 
@@ -261,23 +327,23 @@ namespace Main
         // copy launcher function
         public void CopySystemLauncher()
         {
-            string sourceFile = mainLauncherPath + systemName + ".conf";
+            string sourceFile = sourceLauncherPath + systemName + ".conf";
             string destFile = launcherTargetPath + systemName + ".conf";
 
             File.Copy(sourceFile, destFile, true); // add ask for overwriting?
         }
 
         // Set emulators Paths
-        private void cbEmuSelecEmulator_TextChanged(object sender, EventArgs e)
+        private void CbEmuSelecEmulator_TextChanged(object sender, EventArgs e)
         {
+
             selectedEmuName = cbEmuSelecEmulator.Text;
             sysAndTools.selectedEmuName = selectedEmuName;
-
             sysAndTools.SetEmuDownloadPath();
             TbEmuDownloadLink.Text = sysAndTools.EmuURL;
             tbEmuFolderDestination.Text = emulatorsPath + selectedEmuName;
-            targetFolder = tbEmuFolderDestination.Text;
             lblEmuSystemType.Text = sysAndTools.systemType;
+            targetFolder = tbEmuFolderDestination.Text;
         }
 
 
@@ -287,8 +353,16 @@ namespace Main
             ToolsProgressBar.Value = filesDownloader.completionBar;
             lblToolsDownloadedValue.Text = filesDownloader.downloadedSize;
             lblToolsDownloadSpeedValue.Text = filesDownloader.downloadSpeed;
+            TxtEmuPercent.Text = filesDownloader.completionTxt;
         }
 
-
+        private void CbSysSelSystem_TextChanged(object sender, EventArgs e)
+        {
+            systemName = cbSysSelSystem.Text;
+            fileToDisplay = sourceSystemImagePath + systemName + ".jpg";
+            logoToDisplay = sourceSystemLogoPath + systemName + ".png";
+            SystemPictureBox.ImageLocation = fileToDisplay;
+            SysLogoPictureBox.ImageLocation = logoToDisplay;
+        }
     }
 }
