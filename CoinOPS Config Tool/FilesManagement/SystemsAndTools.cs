@@ -13,7 +13,7 @@ namespace CoinOPS_Configurator.FilesManagement
         public string fileSource;
         public string selectedEmuName;
         public string systemType;
-
+        public string targetImageName;
 
 
         public void SetEmuDownloadPath()

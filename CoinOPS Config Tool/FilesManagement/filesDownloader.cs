@@ -53,10 +53,10 @@ namespace CoinOPS_Configurator.FilesManagement
             //lblToolsDownloadedValue.Text = downloadedSize;
             //lblStatus.Text = downloadStatus;
 
-            downloadSpeed = string.Format("{0}", e.SpeedInBytes.ToHumanReadableSize() + "/s");
-            completionTxt = e.Progress.ToString("0.00") + "%";
+            downloadSpeed = string.Format("{0} MB/s", (e.SpeedInBytes / 1024d / 1024d).ToString("0.00"));
+            completionTxt = $"{e.Progress.ToString("0.00")} % ";
             completionBar = (int)e.Progress;
-            downloadedSize = string.Format("{0}", e.TotalBytesReceived.ToHumanReadableSize(), httpDownloader.Info.Length >= 0 ? httpDownloader.Info.Length.ToHumanReadableSize() : "Unknown");
+            downloadedSize = string.Format("{0} MB", (httpDownloader.TotalBytesReceived / 1024d / 1024d).ToString("0.00"));
             downloadStatus = "Downloading ...";
         }
 
