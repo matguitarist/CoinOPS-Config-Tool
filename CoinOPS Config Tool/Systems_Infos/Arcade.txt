@@ -1,0 +1,1 @@
+Arcade games often have short levels, simple and intuitive control schemes, and rapidly increasing difficulty. This is due to the environment of the Arcade, where the player is essentially renting the game for as long as their in-game avatar can stay alive (or until they run out of tokens).
