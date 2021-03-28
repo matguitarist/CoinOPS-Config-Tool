@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
-using CoinOPS_Configurator.FilesManagement;
+using CoinOPS_Config_Tool.FilesManagement;
 
 namespace CoinOPS_Configurator
 {

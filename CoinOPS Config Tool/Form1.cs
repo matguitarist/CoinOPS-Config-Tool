@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
-using CoinOPS_Configurator.FilesManagement;
 using MetroSet_UI.Forms;
 using System.Diagnostics;
 using System.Xml;
@@ -12,44 +11,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CoinOPS_Config_Tool.FilesManagement;
 
 namespace Main
 {
     public partial class MainWindows : MetroSetForm
     {
+        // Gain Access to other classes
         private readonly Data data = new Data();
         private readonly FilesDownloader filesDownloader = new FilesDownloader();
         private readonly Extractor extractor = new Extractor();
         private readonly SystemsAndTools sysAndTools = new SystemsAndTools();
         private readonly FolderBrowserDialog folderbd = new FolderBrowserDialog();
+        private readonly FileReadWrite fileReadAndWrite = new FileReadWrite();
 
 
-        // Path variable
-        private string systemPathFolder;
-
+        // Source path variable
         private readonly string sourceLauncherPath = Directory.GetCurrentDirectory() + "\\launchers\\";
-        private readonly string mainToolsPath = Directory.GetCurrentDirectory() + "\\Tools\\";
+        private readonly string sourceToolsPath = Directory.GetCurrentDirectory() + "\\Tools\\";
         private readonly string sourceCollectionPath = Directory.GetCurrentDirectory() + "\\collections\\";
         private readonly string sourceSystemImagePath = Directory.GetCurrentDirectory() + "\\Systems_Images\\";
-        private string sourceSystemLogoPath = Directory.GetCurrentDirectory() + "\\Systems_Logos\\";
-        public string copsPath;
-        public string emulatorsPath;
-        private string toolsTargetPath;
-        private string collectionsTargetPath;
-        private string launcherTargetPath;
+        private readonly string sourceSystemLogoPath = Directory.GetCurrentDirectory() + "\\Systems_Logos\\";
+        private readonly string sourceSystemInfoPath = Directory.GetCurrentDirectory() + "\\Systems_Infos\\";
+
+
+        // Target path variable
+        public string targetCopsPath;
+        public string targetEmulatorsPath;
+        private string targetToolsPath;
+        private string targetCollectionsPath;
+        private string targetLauncherPath;
+
 
         private string systemName;
         private string fileToDisplay;
         private string logoToDisplay;
+
         public string selectedEmuName;
 
-        //Temp Variable
+        // Temp Variable
         private readonly string tempFolder = Path.GetTempPath();
 
 
         // Extracting Variable
         public string zipSource;
         public string targetFolder;
+
+        // CoinOPS Setting Variable
+        private string copsTheme;
 
 
         public MainWindows()
@@ -59,7 +68,7 @@ namespace Main
         }
 
 
-        //Select Theme
+        // Select Theme
         private void metroSetSwitch1_SwitchedChanged(object sender)
         {
             if (metroStyleManager.Style == MetroSet_UI.Enums.Style.Light)
@@ -79,19 +88,20 @@ namespace Main
         {
             folderbd.ShowDialog();
             tbMainCopsPath.Text = folderbd.SelectedPath;
-            copsPath = tbMainCopsPath.Text;
-            emulatorsPath = copsPath + "\\emulators\\";
-            tbMainEmuTxtPath.Text = emulatorsPath;
-            collectionsTargetPath = copsPath + "\\collections\\";
-            tbMainColTxtPath.Text = collectionsTargetPath;
-            launcherTargetPath = copsPath + "\\launchers.windows\\";
-            tbMainLauncherTxtPath.Text = launcherTargetPath;
+            targetCopsPath = tbMainCopsPath.Text;
+            targetEmulatorsPath = targetCopsPath + "\\emulators\\";
+            tbMainEmuTxtPath.Text = targetEmulatorsPath;
+            targetCollectionsPath = targetCopsPath + "\\collections\\";
+            tbMainColTxtPath.Text = targetCollectionsPath;
+            targetLauncherPath = targetCopsPath + "\\launchers.windows\\";
+            tbMainLauncherTxtPath.Text = targetLauncherPath;
+                        GetCopsTheme();
         }
 
         private void BtnEmuOpen_Click(object sender, EventArgs e)
         {
             // Determine whether the directory exists.
-            if (!Directory.Exists(emulatorsPath))
+            if (!Directory.Exists(targetEmulatorsPath))
             {
                 MessageBox.Show("Folder not found.");
                 return;
@@ -99,14 +109,14 @@ namespace Main
 
             else
             {
-                Process.Start(emulatorsPath);
+                Process.Start(targetEmulatorsPath);
             }
 
         }
 
         private void BtnCollectonOpen_Click(object sender, EventArgs e)
         { 
-            if (!Directory.Exists(collectionsTargetPath))
+            if (!Directory.Exists(targetCollectionsPath))
             {
                 MessageBox.Show("Folder not found.");
                 return;
@@ -114,13 +124,13 @@ namespace Main
 
             else
             {
-                Process.Start(collectionsTargetPath);
+                Process.Start(targetCollectionsPath);
             }
         }
 
         private void BtnLauncherOpen_Click(object sender, EventArgs e)
         {
-            if (!Directory.Exists(collectionsTargetPath))
+            if (!Directory.Exists(targetCollectionsPath))
             {
                 MessageBox.Show("Folder not found.");
                 return;
@@ -128,7 +138,7 @@ namespace Main
 
             else
             {
-                Process.Start(collectionsTargetPath);
+                Process.Start(targetCollectionsPath);
             }
         }
 
@@ -152,7 +162,7 @@ namespace Main
 
 
 
-        // Save Button to XML
+        //Save Button to XML
         /*private void SaveButton_Click(object sender, EventArgs e)
         {
             try
@@ -175,27 +185,26 @@ namespace Main
 
 
         // Add new system
-         private void BntSysAddSystem_Click(object sender, EventArgs e)
+        private void BntSysAddSystem_Click(object sender, EventArgs e)
         {
             systemName = cbSysSelSystem.Text;
 
             zipSource = sourceCollectionPath + systemName + ".7z";
-            
-            systemPathFolder = sourceCollectionPath + systemName;
+
 
 
             {
                 // Determine whether the directory exists.
-                if (Directory.Exists(systemPathFolder))
+                if (Directory.Exists(sourceCollectionPath + systemName))
                 {
                     MessageBox.Show("That system directory exists already.");
                     return;
                 }
                 else
                 {
-                    targetFolder = copsPath;
-                    collectionsTargetPath = copsPath + "\\collections\\";
-                    string openDir = collectionsTargetPath + systemName;
+                    targetFolder = targetCopsPath;
+                    targetCollectionsPath = targetCopsPath + "\\collections\\";
+                    string openDir = targetCollectionsPath + systemName;
                     CopySystemLauncher();
                     extractor.ExtractFile(zipSource, targetFolder);
                     MessageBox.Show("All directories were created successfully");
@@ -211,6 +220,16 @@ namespace Main
                 }
 
             }
+        }
+
+
+        // copy launcher function
+        public void CopySystemLauncher()
+        {
+            string sourceFile = sourceLauncherPath + systemName + ".conf";
+            string destFile = targetLauncherPath + systemName + ".conf";
+
+            File.Copy(sourceFile, destFile, true); // add ask for overwriting?
         }
 
 
@@ -235,8 +254,6 @@ namespace Main
                 extractor.ExtractFile(zipSource, targetFolder);
             }
         }
-
-
 
         // Pause download
         public void PauseButton_Click(object sender, EventArgs e)
@@ -264,6 +281,8 @@ namespace Main
         }
 
 
+
+
         // Delete temp files
         private void BtnDeleteTemp_Click(object sender, EventArgs e)
         {
@@ -286,14 +305,13 @@ namespace Main
             }
         }
 
-
         // Install TorrentZip
         private void BtnInstallTorrentZip_Click(object sender, EventArgs e)
         {
-            toolsTargetPath = copsPath + "\\tools\\";
+            targetToolsPath = targetCopsPath + "\\tools\\";
             SetDownloadProgress();
 
-            string torrentUI = toolsTargetPath + "TrrntZipUI.exe";
+            string torrentUI = targetToolsPath + "TrrntZipUI.exe";
 
             if (File.Exists(torrentUI))
             {
@@ -306,12 +324,13 @@ namespace Main
                 if (!filesDownloader.isDownloading)
                 {
                     zipSource = tempFolder + "TrrntZipUI280.zip";
-                    extractor.ExtractFile(zipSource, toolsTargetPath);
+                    extractor.ExtractFile(zipSource, targetToolsPath);
                     Process.Start(torrentUI);
                 }
 
             }
         }
+
 
 
         // Delete file in temp folder
@@ -324,24 +343,41 @@ namespace Main
             }
         }
 
-        // copy launcher function
-        public void CopySystemLauncher()
-        {
-            string sourceFile = sourceLauncherPath + systemName + ".conf";
-            string destFile = launcherTargetPath + systemName + ".conf";
 
-            File.Copy(sourceFile, destFile, true); // add ask for overwriting?
+
+        // Set System text and image
+        private void CbSysSelSystem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            systemName = cbSysSelSystem.Text;
+
+            string infoTxtPath = sourceSystemInfoPath + systemName + ".txt";
+            if (File.Exists(infoTxtPath))
+            {
+                string readText = File.ReadAllText(infoTxtPath);
+                lblSysTxtInfo.Text = readText;
+            }
+
+            else
+            {
+                MessageBox.Show("Description unavailable");
+            }
+            fileToDisplay = sourceSystemImagePath + systemName + ".jpg";
+            logoToDisplay = sourceSystemLogoPath + systemName + ".png";
+            SystemPictureBox.ImageLocation = fileToDisplay;
+            SysLogoPictureBox.BackColor = Color.Transparent;
+            SysLogoPictureBox.ImageLocation = logoToDisplay;
         }
 
+
         // Set emulators Paths
-        private void CbEmuSelecEmulator_TextChanged(object sender, EventArgs e)
+        private void CbEmuSelecEmulator_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             selectedEmuName = cbEmuSelecEmulator.Text;
             sysAndTools.selectedEmuName = selectedEmuName;
             sysAndTools.SetEmuDownloadPath();
             TbEmuDownloadLink.Text = sysAndTools.EmuURL;
-            tbEmuFolderDestination.Text = emulatorsPath + selectedEmuName;
+            tbEmuFolderDestination.Text = targetEmulatorsPath + selectedEmuName;
             lblEmuSystemType.Text = sysAndTools.systemType;
             targetFolder = tbEmuFolderDestination.Text;
         }
@@ -356,13 +392,62 @@ namespace Main
             TxtEmuPercent.Text = filesDownloader.completionTxt;
         }
 
-        private void CbSysSelSystem_TextChanged(object sender, EventArgs e)
+        private void CbSettingTheme_SelectedIndexChanged(object sender, EventArgs e)
         {
-            systemName = cbSysSelSystem.Text;
-            fileToDisplay = sourceSystemImagePath + systemName + ".jpg";
-            logoToDisplay = sourceSystemLogoPath + systemName + ".png";
-            SystemPictureBox.ImageLocation = fileToDisplay;
-            SysLogoPictureBox.ImageLocation = logoToDisplay;
+            string infoTxtPath = targetCopsPath + "setting.txt";
+            if (File.Exists(infoTxtPath))
+            {
+                string readText = File.ReadAllText(infoTxtPath);
+                lblSysTxtInfo.Text = readText;
+            }
+
+            else
+            {
+                MessageBox.Show("No theme available");
+            }
+
         }
+
+        private void GetCopsTheme()
+        {
+            using (var reader = new StreamReader(targetCopsPath + "\\settings.conf"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var layout = reader.ReadLine();
+
+                    if (layout.Contains("Worlds"))
+                    {
+                        copsTheme = layout;
+                        tbSettingTheme.Text = "Worlds";
+                        break;
+                    }
+                    else if (layout.Contains("Animatic"))
+                    {
+                        copsTheme = layout;
+                        tbSettingTheme.Text = "Animatic";
+                        break;
+                    }
+                    else if (layout.Contains("Flatio"))
+                    {
+                        copsTheme = layout;
+                        tbSettingTheme.Text = "Flatio";
+                        break;
+                    }
+                    else
+                    {
+                        tbSettingTheme.Text = "Unknown theme";
+                        MessageBox.Show("You are using an unknown theme");
+                        break;
+                    }
+
+                }
+
+                reader.Close();
+            }
+
+        }
+    
+
     }
 }

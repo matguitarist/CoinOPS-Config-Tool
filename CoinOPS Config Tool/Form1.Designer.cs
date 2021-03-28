@@ -29,7 +29,6 @@ namespace Main
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindows));
             this.CloseControlBox = new MetroSet_UI.Controls.MetroSetControlBox();
             this.metroStyleManager = new MetroSet_UI.Components.StyleManager();
             this.TabSelection = new MetroSet_UI.Controls.MetroSetTabControl();
@@ -47,6 +46,8 @@ namespace Main
             this.TxtMainCopsPath = new MetroSet_UI.Controls.MetroSetLabel();
             this.btnMainBrowse = new MetroSet_UI.Controls.MetroSetButton();
             this.TabSystem = new MetroSet_UI.Child.MetroSetSetTabPage();
+            this.SysLogoPictureBox = new System.Windows.Forms.PictureBox();
+            this.lblSysTxtInfo = new MetroSet_UI.Controls.MetroSetLabel();
             this.SystemPictureBox = new System.Windows.Forms.PictureBox();
             this.bntSysAddSystem = new MetroSet_UI.Controls.MetroSetButton();
             this.TxtSysSelectSystem = new MetroSet_UI.Controls.MetroSetLabel();
@@ -80,20 +81,25 @@ namespace Main
             this.lblToolDownloadSpeed = new MetroSet_UI.Controls.MetroSetLabel();
             this.lblToolDownloadedTxt = new MetroSet_UI.Controls.MetroSetLabel();
             this.TxtEmuPercent = new MetroSet_UI.Controls.MetroSetLabel();
+            this.metroSetSetTabPage1 = new MetroSet_UI.Child.MetroSetSetTabPage();
+            this.lblSettingTheme = new MetroSet_UI.Controls.MetroSetLabel();
+            this.BtnSettingDownload = new MetroSet_UI.Controls.MetroSetButton();
+            this.cbSettingTheme = new MetroSet_UI.Controls.MetroSetComboBox();
             this.fbd = new System.Windows.Forms.OpenFileDialog();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.lblThemeTxt = new MetroSet_UI.Controls.MetroSetLabel();
             this.metroSetSwitch1 = new MetroSet_UI.Controls.MetroSetSwitch();
-            this.metroSetLabel1 = new MetroSet_UI.Controls.MetroSetLabel();
-            this.SysLogoPictureBox = new System.Windows.Forms.PictureBox();
+            this.lblSettingActualTheme = new MetroSet_UI.Controls.MetroSetLabel();
+            this.tbSettingTheme = new MetroSet_UI.Controls.MetroSetTextBox();
             this.TabSelection.SuspendLayout();
             this.TabMain.SuspendLayout();
             this.TabSystem.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SysLogoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SystemPictureBox)).BeginInit();
             this.TabEmulators.SuspendLayout();
             this.TabTools.SuspendLayout();
+            this.metroSetSetTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SysLogoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // CloseControlBox
@@ -139,12 +145,13 @@ namespace Main
             this.TabSelection.Controls.Add(this.TabSystem);
             this.TabSelection.Controls.Add(this.TabEmulators);
             this.TabSelection.Controls.Add(this.TabTools);
+            this.TabSelection.Controls.Add(this.metroSetSetTabPage1);
             this.TabSelection.Cursor = System.Windows.Forms.Cursors.Default;
             this.TabSelection.IsDerivedStyle = true;
             this.TabSelection.ItemSize = new System.Drawing.Size(100, 38);
             this.TabSelection.Location = new System.Drawing.Point(50, 100);
             this.TabSelection.Name = "TabSelection";
-            this.TabSelection.SelectedIndex = 1;
+            this.TabSelection.SelectedIndex = 4;
             this.TabSelection.SelectedTextColor = System.Drawing.Color.White;
             this.TabSelection.ShowToolTips = true;
             this.TabSelection.Size = new System.Drawing.Size(800, 450);
@@ -476,7 +483,7 @@ namespace Main
             // 
             this.TabSystem.BaseColor = System.Drawing.Color.White;
             this.TabSystem.Controls.Add(this.SysLogoPictureBox);
-            this.TabSystem.Controls.Add(this.metroSetLabel1);
+            this.TabSystem.Controls.Add(this.lblSysTxtInfo);
             this.TabSystem.Controls.Add(this.SystemPictureBox);
             this.TabSystem.Controls.Add(this.bntSysAddSystem);
             this.TabSystem.Controls.Add(this.TxtSysSelectSystem);
@@ -496,12 +503,37 @@ namespace Main
             this.TabSystem.ThemeName = "MetroLite";
             this.TabSystem.ToolTipText = "System Tab";
             // 
+            // SysLogoPictureBox
+            // 
+            this.SysLogoPictureBox.Location = new System.Drawing.Point(20, 124);
+            this.SysLogoPictureBox.Name = "SysLogoPictureBox";
+            this.SysLogoPictureBox.Size = new System.Drawing.Size(300, 95);
+            this.SysLogoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.SysLogoPictureBox.TabIndex = 8;
+            this.SysLogoPictureBox.TabStop = false;
+            // 
+            // lblSysTxtInfo
+            // 
+            this.lblSysTxtInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblSysTxtInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblSysTxtInfo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSysTxtInfo.IsDerivedStyle = true;
+            this.lblSysTxtInfo.Location = new System.Drawing.Point(20, 222);
+            this.lblSysTxtInfo.Name = "lblSysTxtInfo";
+            this.lblSysTxtInfo.Size = new System.Drawing.Size(300, 182);
+            this.lblSysTxtInfo.Style = MetroSet_UI.Enums.Style.Light;
+            this.lblSysTxtInfo.StyleManager = null;
+            this.lblSysTxtInfo.TabIndex = 7;
+            this.lblSysTxtInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblSysTxtInfo.ThemeAuthor = "Narwin";
+            this.lblSysTxtInfo.ThemeName = "MetroLite";
+            // 
             // SystemPictureBox
             // 
             this.SystemPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SystemPictureBox.Location = new System.Drawing.Point(344, 124);
             this.SystemPictureBox.Name = "SystemPictureBox";
-            this.SystemPictureBox.Size = new System.Drawing.Size(434, 264);
+            this.SystemPictureBox.Size = new System.Drawing.Size(434, 280);
             this.SystemPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.SystemPictureBox.TabIndex = 6;
             this.SystemPictureBox.TabStop = false;
@@ -614,7 +646,7 @@ namespace Main
             this.cbSysSelSystem.TabIndex = 0;
             this.cbSysSelSystem.ThemeAuthor = "Narwin";
             this.cbSysSelSystem.ThemeName = "MetroLight";
-            this.cbSysSelSystem.TextChanged += new System.EventHandler(this.CbSysSelSystem_TextChanged);
+            this.cbSysSelSystem.SelectedIndexChanged += new System.EventHandler(this.CbSysSelSystem_SelectedIndexChanged);
             // 
             // TabEmulators
             // 
@@ -992,7 +1024,7 @@ namespace Main
             this.cbEmuSelecEmulator.TabIndex = 5;
             this.cbEmuSelecEmulator.ThemeAuthor = "Narwin";
             this.cbEmuSelecEmulator.ThemeName = "MetroLight";
-            this.cbEmuSelecEmulator.TextChanged += new System.EventHandler(this.CbEmuSelecEmulator_TextChanged);
+            this.cbEmuSelecEmulator.SelectedIndexChanged += new System.EventHandler(this.CbEmuSelecEmulator_SelectedIndexChanged);
             // 
             // TxtEmuFolderDestination
             // 
@@ -1219,6 +1251,108 @@ namespace Main
             this.TxtEmuPercent.ThemeAuthor = "Narwin";
             this.TxtEmuPercent.ThemeName = "MetroLight";
             // 
+            // metroSetSetTabPage1
+            // 
+            this.metroSetSetTabPage1.BaseColor = System.Drawing.Color.White;
+            this.metroSetSetTabPage1.Controls.Add(this.tbSettingTheme);
+            this.metroSetSetTabPage1.Controls.Add(this.lblSettingActualTheme);
+            this.metroSetSetTabPage1.Controls.Add(this.lblSettingTheme);
+            this.metroSetSetTabPage1.Controls.Add(this.BtnSettingDownload);
+            this.metroSetSetTabPage1.Controls.Add(this.cbSettingTheme);
+            this.metroSetSetTabPage1.Font = null;
+            this.metroSetSetTabPage1.ImageIndex = 0;
+            this.metroSetSetTabPage1.ImageKey = null;
+            this.metroSetSetTabPage1.IsDerivedStyle = true;
+            this.metroSetSetTabPage1.Location = new System.Drawing.Point(4, 42);
+            this.metroSetSetTabPage1.Name = "metroSetSetTabPage1";
+            this.metroSetSetTabPage1.Size = new System.Drawing.Size(792, 404);
+            this.metroSetSetTabPage1.Style = MetroSet_UI.Enums.Style.Light;
+            this.metroSetSetTabPage1.StyleManager = null;
+            this.metroSetSetTabPage1.TabIndex = 4;
+            this.metroSetSetTabPage1.Text = "CoinOPS Setting";
+            this.metroSetSetTabPage1.ThemeAuthor = "Narwin";
+            this.metroSetSetTabPage1.ThemeName = "MetroLite";
+            this.metroSetSetTabPage1.ToolTipText = null;
+            // 
+            // lblSettingTheme
+            // 
+            this.lblSettingTheme.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSettingTheme.IsDerivedStyle = true;
+            this.lblSettingTheme.Location = new System.Drawing.Point(330, 70);
+            this.lblSettingTheme.Name = "lblSettingTheme";
+            this.lblSettingTheme.Size = new System.Drawing.Size(67, 26);
+            this.lblSettingTheme.Style = MetroSet_UI.Enums.Style.Light;
+            this.lblSettingTheme.StyleManager = null;
+            this.lblSettingTheme.TabIndex = 23;
+            this.lblSettingTheme.Text = "Theme :";
+            this.lblSettingTheme.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSettingTheme.ThemeAuthor = "Narwin";
+            this.lblSettingTheme.ThemeName = "MetroLite";
+            // 
+            // BtnSettingDownload
+            // 
+            this.BtnSettingDownload.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnSettingDownload.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnSettingDownload.DisabledForeColor = System.Drawing.Color.Gray;
+            this.BtnSettingDownload.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.BtnSettingDownload.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.BtnSettingDownload.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.BtnSettingDownload.HoverTextColor = System.Drawing.Color.White;
+            this.BtnSettingDownload.IsDerivedStyle = true;
+            this.BtnSettingDownload.Location = new System.Drawing.Point(667, 70);
+            this.BtnSettingDownload.Name = "BtnSettingDownload";
+            this.BtnSettingDownload.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnSettingDownload.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnSettingDownload.NormalTextColor = System.Drawing.Color.White;
+            this.BtnSettingDownload.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.BtnSettingDownload.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.BtnSettingDownload.PressTextColor = System.Drawing.Color.White;
+            this.BtnSettingDownload.Size = new System.Drawing.Size(102, 26);
+            this.BtnSettingDownload.Style = MetroSet_UI.Enums.Style.Light;
+            this.BtnSettingDownload.StyleManager = this.metroStyleManager;
+            this.BtnSettingDownload.TabIndex = 22;
+            this.BtnSettingDownload.Text = "Download";
+            this.BtnSettingDownload.ThemeAuthor = "Narwin";
+            this.BtnSettingDownload.ThemeName = "MetroLight";
+            // 
+            // cbSettingTheme
+            // 
+            this.cbSettingTheme.AllowDrop = true;
+            this.cbSettingTheme.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
+            this.cbSettingTheme.BackColor = System.Drawing.Color.Transparent;
+            this.cbSettingTheme.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.cbSettingTheme.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
+            this.cbSettingTheme.CausesValidation = false;
+            this.cbSettingTheme.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.cbSettingTheme.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.cbSettingTheme.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            this.cbSettingTheme.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbSettingTheme.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSettingTheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbSettingTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSettingTheme.FormattingEnabled = true;
+            this.cbSettingTheme.IsDerivedStyle = true;
+            this.cbSettingTheme.ItemHeight = 20;
+            this.cbSettingTheme.Items.AddRange(new object[] {
+            "Animatic",
+            "Flatio",
+            "Pandora’s Box HD Blue",
+            "Pandora’s Box HD Green",
+            "RetroSpin",
+            "Worlds"});
+            this.cbSettingTheme.Location = new System.Drawing.Point(400, 70);
+            this.cbSettingTheme.MaxDropDownItems = 12;
+            this.cbSettingTheme.Name = "cbSettingTheme";
+            this.cbSettingTheme.SelectedItemBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.cbSettingTheme.SelectedItemForeColor = System.Drawing.Color.White;
+            this.cbSettingTheme.Size = new System.Drawing.Size(250, 26);
+            this.cbSettingTheme.Style = MetroSet_UI.Enums.Style.Light;
+            this.cbSettingTheme.StyleManager = this.metroStyleManager;
+            this.cbSettingTheme.TabIndex = 21;
+            this.cbSettingTheme.ThemeAuthor = "Narwin";
+            this.cbSettingTheme.ThemeName = "MetroLight";
+            this.cbSettingTheme.SelectedIndexChanged += new System.EventHandler(this.CbSettingTheme_SelectedIndexChanged);
+            // 
             // fbd
             // 
             this.fbd.FileName = "openFileDialog1";
@@ -1269,31 +1403,49 @@ namespace Main
             this.metroSetSwitch1.UnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
             this.metroSetSwitch1.SwitchedChanged += new MetroSet_UI.Controls.MetroSetSwitch.SwitchedChangedEventHandler(this.metroSetSwitch1_SwitchedChanged);
             // 
-            // metroSetLabel1
+            // lblSettingActualTheme
             // 
-            this.metroSetLabel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.metroSetLabel1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.metroSetLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroSetLabel1.IsDerivedStyle = true;
-            this.metroSetLabel1.Location = new System.Drawing.Point(20, 222);
-            this.metroSetLabel1.Name = "metroSetLabel1";
-            this.metroSetLabel1.Size = new System.Drawing.Size(300, 166);
-            this.metroSetLabel1.Style = MetroSet_UI.Enums.Style.Light;
-            this.metroSetLabel1.StyleManager = null;
-            this.metroSetLabel1.TabIndex = 7;
-            this.metroSetLabel1.Text = resources.GetString("metroSetLabel1.Text");
-            this.metroSetLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroSetLabel1.ThemeAuthor = "Narwin";
-            this.metroSetLabel1.ThemeName = "MetroLite";
+            this.lblSettingActualTheme.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSettingActualTheme.IsDerivedStyle = true;
+            this.lblSettingActualTheme.Location = new System.Drawing.Point(298, 120);
+            this.lblSettingActualTheme.Name = "lblSettingActualTheme";
+            this.lblSettingActualTheme.Size = new System.Drawing.Size(99, 26);
+            this.lblSettingActualTheme.Style = MetroSet_UI.Enums.Style.Light;
+            this.lblSettingActualTheme.StyleManager = null;
+            this.lblSettingActualTheme.TabIndex = 24;
+            this.lblSettingActualTheme.Text = "Actual theme :";
+            this.lblSettingActualTheme.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSettingActualTheme.ThemeAuthor = "Narwin";
+            this.lblSettingActualTheme.ThemeName = "MetroLite";
             // 
-            // SysLogoPictureBox
+            // tbSettingTheme
             // 
-            this.SysLogoPictureBox.Location = new System.Drawing.Point(20, 124);
-            this.SysLogoPictureBox.Name = "SysLogoPictureBox";
-            this.SysLogoPictureBox.Size = new System.Drawing.Size(300, 95);
-            this.SysLogoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.SysLogoPictureBox.TabIndex = 8;
-            this.SysLogoPictureBox.TabStop = false;
+            this.tbSettingTheme.AutoCompleteCustomSource = null;
+            this.tbSettingTheme.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.tbSettingTheme.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.tbSettingTheme.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.tbSettingTheme.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.tbSettingTheme.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.tbSettingTheme.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            this.tbSettingTheme.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbSettingTheme.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.tbSettingTheme.Image = null;
+            this.tbSettingTheme.IsDerivedStyle = true;
+            this.tbSettingTheme.Lines = null;
+            this.tbSettingTheme.Location = new System.Drawing.Point(400, 120);
+            this.tbSettingTheme.MaxLength = 32767;
+            this.tbSettingTheme.Multiline = false;
+            this.tbSettingTheme.Name = "tbSettingTheme";
+            this.tbSettingTheme.ReadOnly = true;
+            this.tbSettingTheme.Size = new System.Drawing.Size(250, 29);
+            this.tbSettingTheme.Style = MetroSet_UI.Enums.Style.Light;
+            this.tbSettingTheme.StyleManager = null;
+            this.tbSettingTheme.TabIndex = 25;
+            this.tbSettingTheme.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbSettingTheme.ThemeAuthor = "Narwin";
+            this.tbSettingTheme.ThemeName = "MetroLite";
+            this.tbSettingTheme.UseSystemPasswordChar = false;
+            this.tbSettingTheme.WatermarkText = "";
             // 
             // MainWindows
             // 
@@ -1311,11 +1463,12 @@ namespace Main
             this.TabSelection.ResumeLayout(false);
             this.TabMain.ResumeLayout(false);
             this.TabSystem.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SysLogoPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SystemPictureBox)).EndInit();
             this.TabEmulators.ResumeLayout(false);
             this.TabTools.ResumeLayout(false);
+            this.metroSetSetTabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SysLogoPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1376,8 +1529,14 @@ namespace Main
         private MetroSet_UI.Controls.MetroSetButton BtnLauncherOpen;
         private MetroSet_UI.Controls.MetroSetButton BtnCollectonOpen;
         private System.Windows.Forms.PictureBox SystemPictureBox;
-        private MetroSet_UI.Controls.MetroSetLabel metroSetLabel1;
+        private MetroSet_UI.Controls.MetroSetLabel lblSysTxtInfo;
         private System.Windows.Forms.PictureBox SysLogoPictureBox;
+        private MetroSet_UI.Child.MetroSetSetTabPage metroSetSetTabPage1;
+        private MetroSet_UI.Controls.MetroSetLabel lblSettingTheme;
+        private MetroSet_UI.Controls.MetroSetButton BtnSettingDownload;
+        private MetroSet_UI.Controls.MetroSetComboBox cbSettingTheme;
+        private MetroSet_UI.Controls.MetroSetTextBox tbSettingTheme;
+        private MetroSet_UI.Controls.MetroSetLabel lblSettingActualTheme;
     }
 }
 
