@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 
 
-namespace CoinOPS_Configurator.FilesManagement
+namespace CoinOPS_Config_Tool.FilesManagement
 {
     public class Data
     {
