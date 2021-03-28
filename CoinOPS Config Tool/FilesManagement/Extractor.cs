@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Windows.Forms;
 
+
 namespace CoinOPS_Config_Tool.FilesManagement
 {
     internal class Extractor

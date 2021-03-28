@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 
+
 namespace CoinOPS_Config_Tool.FilesManagement
 {
     internal class SystemsAndTools
