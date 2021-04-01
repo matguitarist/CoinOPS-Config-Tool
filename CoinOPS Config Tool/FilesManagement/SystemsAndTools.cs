@@ -27,13 +27,13 @@ namespace CoinOPS_Config_Tool.FilesManagement
 
             if (selectedEmuName == "Mame")
             {
-                EmuURL = "https://github.com/mamedev/mame/releases/download/mame0229/mame0229b_64bit.exe";
-                downloadedFileName = "mame0229b_64bit.exe";
+                EmuURL = "https://github.com/mamedev/mame/releases/download/mame0230/mame0230b_64bit.exe";
+                downloadedFileName = "mame0230b_64bit.exe";
                 systemType = "Arcade Emulator";
             }
             else if (selectedEmuName == "RetroArch")
             {
-                EmuURL = "https://buildbot.libretro.com/stable/1.9.0/windows/x86_64/RetroArch.7z";
+                EmuURL = "https://buildbot.libretro.com/stable/1.9.1/windows/x86_64/RetroArch.7z";
                 downloadedFileName = tempFolder + "RetroArch.7z";
                 systemType = "Multi System Emulator";
             }
@@ -45,8 +45,8 @@ namespace CoinOPS_Config_Tool.FilesManagement
             }
             else if (selectedEmuName == "Cemu")
             {
-                EmuURL = "https://cemu.info/releases/cemu_1.22.8.zip";
-                downloadedFileName = "cemu_1.22.8.zip";  // need to rename folder to cemu after extraction
+                EmuURL = "https://cemu.info/releases/cemu_1.22.9.zip";
+                downloadedFileName = "cemu_1.22.9.zip";  // need to rename folder to cemu after extraction
                 systemType = "Wii U Emulator";
             }
             else if (selectedEmuName == "DuckStation")
