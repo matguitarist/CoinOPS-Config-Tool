@@ -71,6 +71,9 @@ namespace Main
             this.cbEmuSelecEmulator = new MetroSet_UI.Controls.MetroSetComboBox();
             this.TxtEmuFolderDestination = new MetroSet_UI.Controls.MetroSetLabel();
             this.TabTools = new MetroSet_UI.Child.MetroSetSetTabPage();
+            this.BtnToolsInstallDirectX = new MetroSet_UI.Controls.MetroSetButton();
+            this.BtnToolsInstallRomsCenter = new MetroSet_UI.Controls.MetroSetButton();
+            this.metroSetLabel1 = new MetroSet_UI.Controls.MetroSetLabel();
             this.btnToolsInstallRuntime = new MetroSet_UI.Controls.MetroSetButton();
             this.BtnToolsInstallTorrentZip = new MetroSet_UI.Controls.MetroSetButton();
             this.lblToolsStatusValue = new MetroSet_UI.Controls.MetroSetLabel();
@@ -90,11 +93,9 @@ namespace Main
             this.fbd = new System.Windows.Forms.OpenFileDialog();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.lblThemeTxt = new MetroSet_UI.Controls.MetroSetLabel();
-            this.metroSetSwitch1 = new MetroSet_UI.Controls.MetroSetSwitch();
-            this.metroSetLabel1 = new MetroSet_UI.Controls.MetroSetLabel();
-            this.BtnToolsInstallRomsCenter = new MetroSet_UI.Controls.MetroSetButton();
-            this.BtnToolsInstallDirectX = new MetroSet_UI.Controls.MetroSetButton();
+            this.msThemeSwitch = new MetroSet_UI.Controls.MetroSetSwitch();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.BtnSaveSetting = new MetroSet_UI.Controls.MetroSetButton();
             this.TabSelection.SuspendLayout();
             this.TabMain.SuspendLayout();
             this.TabSystem.SuspendLayout();
@@ -155,7 +156,7 @@ namespace Main
             this.TabSelection.ItemSize = new System.Drawing.Size(100, 38);
             this.TabSelection.Location = new System.Drawing.Point(50, 100);
             this.TabSelection.Name = "TabSelection";
-            this.TabSelection.SelectedIndex = 3;
+            this.TabSelection.SelectedIndex = 0;
             this.TabSelection.SelectedTextColor = System.Drawing.Color.White;
             this.TabSelection.ShowToolTips = true;
             this.TabSelection.Size = new System.Drawing.Size(800, 450);
@@ -172,6 +173,7 @@ namespace Main
             // TabMain
             // 
             this.TabMain.BaseColor = System.Drawing.Color.White;
+            this.TabMain.Controls.Add(this.BtnSaveSetting);
             this.TabMain.Controls.Add(this.BtnLauncherOpen);
             this.TabMain.Controls.Add(this.BtnCollectonOpen);
             this.TabMain.Controls.Add(this.BtnEmuOpen);
@@ -251,7 +253,7 @@ namespace Main
             this.BtnCollectonOpen.Text = "Open";
             this.BtnCollectonOpen.ThemeAuthor = "Narwin";
             this.BtnCollectonOpen.ThemeName = "MetroLight";
-            this.BtnCollectonOpen.Click += new System.EventHandler(this.BtnCollectonOpen_Click);
+            this.BtnCollectonOpen.Click += new System.EventHandler(this.BtnCollectionOpen_Click);
             // 
             // BtnEmuOpen
             // 
@@ -284,9 +286,9 @@ namespace Main
             // 
             this.txtMainLauncherPath.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMainLauncherPath.IsDerivedStyle = true;
-            this.txtMainLauncherPath.Location = new System.Drawing.Point(20, 280);
+            this.txtMainLauncherPath.Location = new System.Drawing.Point(0, 280);
             this.txtMainLauncherPath.Name = "txtMainLauncherPath";
-            this.txtMainLauncherPath.Size = new System.Drawing.Size(310, 35);
+            this.txtMainLauncherPath.Size = new System.Drawing.Size(330, 35);
             this.txtMainLauncherPath.Style = MetroSet_UI.Enums.Style.Light;
             this.txtMainLauncherPath.StyleManager = this.metroStyleManager;
             this.txtMainLauncherPath.TabIndex = 10;
@@ -309,12 +311,12 @@ namespace Main
             this.tbMainLauncherTxtPath.Image = null;
             this.tbMainLauncherTxtPath.IsDerivedStyle = true;
             this.tbMainLauncherTxtPath.Lines = null;
-            this.tbMainLauncherTxtPath.Location = new System.Drawing.Point(20, 320);
+            this.tbMainLauncherTxtPath.Location = new System.Drawing.Point(0, 320);
             this.tbMainLauncherTxtPath.MaxLength = 32767;
             this.tbMainLauncherTxtPath.Multiline = false;
             this.tbMainLauncherTxtPath.Name = "tbMainLauncherTxtPath";
             this.tbMainLauncherTxtPath.ReadOnly = false;
-            this.tbMainLauncherTxtPath.Size = new System.Drawing.Size(700, 29);
+            this.tbMainLauncherTxtPath.Size = new System.Drawing.Size(720, 29);
             this.tbMainLauncherTxtPath.Style = MetroSet_UI.Enums.Style.Light;
             this.tbMainLauncherTxtPath.StyleManager = this.metroStyleManager;
             this.tbMainLauncherTxtPath.TabIndex = 9;
@@ -328,9 +330,9 @@ namespace Main
             // 
             this.txtMainCollectionPath.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMainCollectionPath.IsDerivedStyle = true;
-            this.txtMainCollectionPath.Location = new System.Drawing.Point(20, 190);
+            this.txtMainCollectionPath.Location = new System.Drawing.Point(0, 190);
             this.txtMainCollectionPath.Name = "txtMainCollectionPath";
-            this.txtMainCollectionPath.Size = new System.Drawing.Size(310, 35);
+            this.txtMainCollectionPath.Size = new System.Drawing.Size(330, 35);
             this.txtMainCollectionPath.Style = MetroSet_UI.Enums.Style.Light;
             this.txtMainCollectionPath.StyleManager = this.metroStyleManager;
             this.txtMainCollectionPath.TabIndex = 8;
@@ -353,12 +355,12 @@ namespace Main
             this.tbMainColTxtPath.Image = null;
             this.tbMainColTxtPath.IsDerivedStyle = true;
             this.tbMainColTxtPath.Lines = null;
-            this.tbMainColTxtPath.Location = new System.Drawing.Point(20, 230);
+            this.tbMainColTxtPath.Location = new System.Drawing.Point(0, 230);
             this.tbMainColTxtPath.MaxLength = 32767;
             this.tbMainColTxtPath.Multiline = false;
             this.tbMainColTxtPath.Name = "tbMainColTxtPath";
             this.tbMainColTxtPath.ReadOnly = false;
-            this.tbMainColTxtPath.Size = new System.Drawing.Size(700, 29);
+            this.tbMainColTxtPath.Size = new System.Drawing.Size(720, 29);
             this.tbMainColTxtPath.Style = MetroSet_UI.Enums.Style.Light;
             this.tbMainColTxtPath.StyleManager = this.metroStyleManager;
             this.tbMainColTxtPath.TabIndex = 7;
@@ -372,9 +374,9 @@ namespace Main
             // 
             this.txtMainEmuPath.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMainEmuPath.IsDerivedStyle = true;
-            this.txtMainEmuPath.Location = new System.Drawing.Point(20, 110);
+            this.txtMainEmuPath.Location = new System.Drawing.Point(0, 110);
             this.txtMainEmuPath.Name = "txtMainEmuPath";
-            this.txtMainEmuPath.Size = new System.Drawing.Size(310, 35);
+            this.txtMainEmuPath.Size = new System.Drawing.Size(330, 35);
             this.txtMainEmuPath.Style = MetroSet_UI.Enums.Style.Light;
             this.txtMainEmuPath.StyleManager = this.metroStyleManager;
             this.txtMainEmuPath.TabIndex = 6;
@@ -397,12 +399,12 @@ namespace Main
             this.tbMainEmuTxtPath.Image = null;
             this.tbMainEmuTxtPath.IsDerivedStyle = true;
             this.tbMainEmuTxtPath.Lines = null;
-            this.tbMainEmuTxtPath.Location = new System.Drawing.Point(20, 150);
+            this.tbMainEmuTxtPath.Location = new System.Drawing.Point(0, 150);
             this.tbMainEmuTxtPath.MaxLength = 32767;
             this.tbMainEmuTxtPath.Multiline = false;
             this.tbMainEmuTxtPath.Name = "tbMainEmuTxtPath";
             this.tbMainEmuTxtPath.ReadOnly = false;
-            this.tbMainEmuTxtPath.Size = new System.Drawing.Size(700, 29);
+            this.tbMainEmuTxtPath.Size = new System.Drawing.Size(720, 29);
             this.tbMainEmuTxtPath.Style = MetroSet_UI.Enums.Style.Light;
             this.tbMainEmuTxtPath.StyleManager = this.metroStyleManager;
             this.tbMainEmuTxtPath.TabIndex = 5;
@@ -426,12 +428,12 @@ namespace Main
             this.tbMainCopsPath.Image = null;
             this.tbMainCopsPath.IsDerivedStyle = true;
             this.tbMainCopsPath.Lines = null;
-            this.tbMainCopsPath.Location = new System.Drawing.Point(20, 70);
+            this.tbMainCopsPath.Location = new System.Drawing.Point(0, 70);
             this.tbMainCopsPath.MaxLength = 32767;
             this.tbMainCopsPath.Multiline = false;
             this.tbMainCopsPath.Name = "tbMainCopsPath";
             this.tbMainCopsPath.ReadOnly = false;
-            this.tbMainCopsPath.Size = new System.Drawing.Size(700, 29);
+            this.tbMainCopsPath.Size = new System.Drawing.Size(720, 29);
             this.tbMainCopsPath.Style = MetroSet_UI.Enums.Style.Light;
             this.tbMainCopsPath.StyleManager = this.metroStyleManager;
             this.tbMainCopsPath.TabIndex = 4;
@@ -445,9 +447,9 @@ namespace Main
             // 
             this.TxtMainCopsPath.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtMainCopsPath.IsDerivedStyle = true;
-            this.TxtMainCopsPath.Location = new System.Drawing.Point(20, 30);
+            this.TxtMainCopsPath.Location = new System.Drawing.Point(0, 30);
             this.TxtMainCopsPath.Name = "TxtMainCopsPath";
-            this.TxtMainCopsPath.Size = new System.Drawing.Size(310, 35);
+            this.TxtMainCopsPath.Size = new System.Drawing.Size(330, 35);
             this.TxtMainCopsPath.Style = MetroSet_UI.Enums.Style.Light;
             this.TxtMainCopsPath.StyleManager = this.metroStyleManager;
             this.TxtMainCopsPath.TabIndex = 3;
@@ -1076,6 +1078,74 @@ namespace Main
             this.TabTools.ThemeName = "MetroLite";
             this.TabTools.ToolTipText = "Tools";
             // 
+            // BtnToolsInstallDirectX
+            // 
+            this.BtnToolsInstallDirectX.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnToolsInstallDirectX.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnToolsInstallDirectX.DisabledForeColor = System.Drawing.Color.Gray;
+            this.BtnToolsInstallDirectX.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.BtnToolsInstallDirectX.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.BtnToolsInstallDirectX.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.BtnToolsInstallDirectX.HoverTextColor = System.Drawing.Color.White;
+            this.BtnToolsInstallDirectX.IsDerivedStyle = true;
+            this.BtnToolsInstallDirectX.Location = new System.Drawing.Point(611, 70);
+            this.BtnToolsInstallDirectX.Name = "BtnToolsInstallDirectX";
+            this.BtnToolsInstallDirectX.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnToolsInstallDirectX.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnToolsInstallDirectX.NormalTextColor = System.Drawing.Color.White;
+            this.BtnToolsInstallDirectX.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.BtnToolsInstallDirectX.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.BtnToolsInstallDirectX.PressTextColor = System.Drawing.Color.White;
+            this.BtnToolsInstallDirectX.Size = new System.Drawing.Size(150, 26);
+            this.BtnToolsInstallDirectX.Style = MetroSet_UI.Enums.Style.Light;
+            this.BtnToolsInstallDirectX.StyleManager = this.metroStyleManager;
+            this.BtnToolsInstallDirectX.TabIndex = 28;
+            this.BtnToolsInstallDirectX.Text = "Install DirectX";
+            this.BtnToolsInstallDirectX.ThemeAuthor = "Narwin";
+            this.BtnToolsInstallDirectX.ThemeName = "MetroLight";
+            this.BtnToolsInstallDirectX.Click += new System.EventHandler(this.BtnToolsInstallDirectX_Click);
+            // 
+            // BtnToolsInstallRomsCenter
+            // 
+            this.BtnToolsInstallRomsCenter.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnToolsInstallRomsCenter.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnToolsInstallRomsCenter.DisabledForeColor = System.Drawing.Color.Gray;
+            this.BtnToolsInstallRomsCenter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.BtnToolsInstallRomsCenter.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.BtnToolsInstallRomsCenter.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.BtnToolsInstallRomsCenter.HoverTextColor = System.Drawing.Color.White;
+            this.BtnToolsInstallRomsCenter.IsDerivedStyle = true;
+            this.BtnToolsInstallRomsCenter.Location = new System.Drawing.Point(417, 70);
+            this.BtnToolsInstallRomsCenter.Name = "BtnToolsInstallRomsCenter";
+            this.BtnToolsInstallRomsCenter.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnToolsInstallRomsCenter.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnToolsInstallRomsCenter.NormalTextColor = System.Drawing.Color.White;
+            this.BtnToolsInstallRomsCenter.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.BtnToolsInstallRomsCenter.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.BtnToolsInstallRomsCenter.PressTextColor = System.Drawing.Color.White;
+            this.BtnToolsInstallRomsCenter.Size = new System.Drawing.Size(150, 26);
+            this.BtnToolsInstallRomsCenter.Style = MetroSet_UI.Enums.Style.Light;
+            this.BtnToolsInstallRomsCenter.StyleManager = this.metroStyleManager;
+            this.BtnToolsInstallRomsCenter.TabIndex = 27;
+            this.BtnToolsInstallRomsCenter.Text = "Install Roms Center";
+            this.BtnToolsInstallRomsCenter.ThemeAuthor = "Narwin";
+            this.BtnToolsInstallRomsCenter.ThemeName = "MetroLight";
+            this.BtnToolsInstallRomsCenter.Click += new System.EventHandler(this.BtnToolsInstallRomsCenter_Click);
+            // 
+            // metroSetLabel1
+            // 
+            this.metroSetLabel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metroSetLabel1.IsDerivedStyle = true;
+            this.metroSetLabel1.Location = new System.Drawing.Point(35, 30);
+            this.metroSetLabel1.Name = "metroSetLabel1";
+            this.metroSetLabel1.Size = new System.Drawing.Size(115, 23);
+            this.metroSetLabel1.Style = MetroSet_UI.Enums.Style.Light;
+            this.metroSetLabel1.StyleManager = null;
+            this.metroSetLabel1.TabIndex = 26;
+            this.metroSetLabel1.Text = "Useful tools";
+            this.metroSetLabel1.ThemeAuthor = "Narwin";
+            this.metroSetLabel1.ThemeName = "MetroLite";
+            // 
             // btnToolsInstallRuntime
             // 
             this.btnToolsInstallRuntime.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
@@ -1101,7 +1171,7 @@ namespace Main
             this.btnToolsInstallRuntime.Text = "Install Visual Runtime";
             this.btnToolsInstallRuntime.ThemeAuthor = "Narwin";
             this.btnToolsInstallRuntime.ThemeName = "MetroLight";
-            this.btnToolsInstallRuntime.Click += new System.EventHandler(this.btnInstallRuntime_Click);
+            this.btnToolsInstallRuntime.Click += new System.EventHandler(this.BtnInstallRuntime_Click);
             // 
             // BtnToolsInstallTorrentZip
             // 
@@ -1417,7 +1487,7 @@ namespace Main
             // 
             this.lblThemeTxt.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblThemeTxt.IsDerivedStyle = true;
-            this.lblThemeTxt.Location = new System.Drawing.Point(706, 60);
+            this.lblThemeTxt.Location = new System.Drawing.Point(711, 69);
             this.lblThemeTxt.Name = "lblThemeTxt";
             this.lblThemeTxt.Size = new System.Drawing.Size(75, 25);
             this.lblThemeTxt.Style = MetroSet_UI.Enums.Style.Light;
@@ -1428,106 +1498,65 @@ namespace Main
             this.lblThemeTxt.ThemeAuthor = "Narwin";
             this.lblThemeTxt.ThemeName = "MetroLight";
             // 
-            // metroSetSwitch1
+            // msThemeSwitch
             // 
-            this.metroSetSwitch1.BackColor = System.Drawing.Color.Transparent;
-            this.metroSetSwitch1.BackgroundColor = System.Drawing.Color.Empty;
-            this.metroSetSwitch1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(147)))));
-            this.metroSetSwitch1.CheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.metroSetSwitch1.CheckState = MetroSet_UI.Enums.CheckState.Unchecked;
-            this.metroSetSwitch1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.metroSetSwitch1.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.metroSetSwitch1.DisabledCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.metroSetSwitch1.DisabledUnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.metroSetSwitch1.IsDerivedStyle = true;
-            this.metroSetSwitch1.Location = new System.Drawing.Point(788, 63);
-            this.metroSetSwitch1.Name = "metroSetSwitch1";
-            this.metroSetSwitch1.Size = new System.Drawing.Size(58, 22);
-            this.metroSetSwitch1.Style = MetroSet_UI.Enums.Style.Light;
-            this.metroSetSwitch1.StyleManager = this.metroStyleManager;
-            this.metroSetSwitch1.Switched = false;
-            this.metroSetSwitch1.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.metroSetSwitch1.TabIndex = 6;
-            this.metroSetSwitch1.Text = "metroSetSwitch1";
-            this.metroSetSwitch1.ThemeAuthor = "Narwin";
-            this.metroSetSwitch1.ThemeName = "MetroLight";
-            this.metroSetSwitch1.UnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
-            this.metroSetSwitch1.SwitchedChanged += new MetroSet_UI.Controls.MetroSetSwitch.SwitchedChangedEventHandler(this.metroSetSwitch1_SwitchedChanged);
+            this.msThemeSwitch.BackColor = System.Drawing.Color.Transparent;
+            this.msThemeSwitch.BackgroundColor = System.Drawing.Color.Empty;
+            this.msThemeSwitch.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(147)))));
+            this.msThemeSwitch.CheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.msThemeSwitch.CheckState = MetroSet_UI.Enums.CheckState.Unchecked;
+            this.msThemeSwitch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.msThemeSwitch.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.msThemeSwitch.DisabledCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.msThemeSwitch.DisabledUnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.msThemeSwitch.IsDerivedStyle = true;
+            this.msThemeSwitch.Location = new System.Drawing.Point(792, 72);
+            this.msThemeSwitch.Name = "msThemeSwitch";
+            this.msThemeSwitch.Size = new System.Drawing.Size(58, 22);
+            this.msThemeSwitch.Style = MetroSet_UI.Enums.Style.Light;
+            this.msThemeSwitch.StyleManager = this.metroStyleManager;
+            this.msThemeSwitch.Switched = false;
+            this.msThemeSwitch.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.msThemeSwitch.TabIndex = 6;
+            this.msThemeSwitch.Text = "metroSetSwitch1";
+            this.msThemeSwitch.ThemeAuthor = "Narwin";
+            this.msThemeSwitch.ThemeName = "MetroLight";
+            this.msThemeSwitch.UnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.msThemeSwitch.SwitchedChanged += new MetroSet_UI.Controls.MetroSetSwitch.SwitchedChangedEventHandler(this.MsThemeSwitch_SwitchedChanged);
             // 
-            // metroSetLabel1
+            // BtnSaveSetting
             // 
-            this.metroSetLabel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroSetLabel1.IsDerivedStyle = true;
-            this.metroSetLabel1.Location = new System.Drawing.Point(35, 30);
-            this.metroSetLabel1.Name = "metroSetLabel1";
-            this.metroSetLabel1.Size = new System.Drawing.Size(115, 23);
-            this.metroSetLabel1.Style = MetroSet_UI.Enums.Style.Light;
-            this.metroSetLabel1.StyleManager = null;
-            this.metroSetLabel1.TabIndex = 26;
-            this.metroSetLabel1.Text = "Useful tools";
-            this.metroSetLabel1.ThemeAuthor = "Narwin";
-            this.metroSetLabel1.ThemeName = "MetroLite";
-            // 
-            // BtnToolsInstallRomsCenter
-            // 
-            this.BtnToolsInstallRomsCenter.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.BtnToolsInstallRomsCenter.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.BtnToolsInstallRomsCenter.DisabledForeColor = System.Drawing.Color.Gray;
-            this.BtnToolsInstallRomsCenter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.BtnToolsInstallRomsCenter.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
-            this.BtnToolsInstallRomsCenter.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
-            this.BtnToolsInstallRomsCenter.HoverTextColor = System.Drawing.Color.White;
-            this.BtnToolsInstallRomsCenter.IsDerivedStyle = true;
-            this.BtnToolsInstallRomsCenter.Location = new System.Drawing.Point(417, 70);
-            this.BtnToolsInstallRomsCenter.Name = "BtnToolsInstallRomsCenter";
-            this.BtnToolsInstallRomsCenter.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.BtnToolsInstallRomsCenter.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.BtnToolsInstallRomsCenter.NormalTextColor = System.Drawing.Color.White;
-            this.BtnToolsInstallRomsCenter.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
-            this.BtnToolsInstallRomsCenter.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
-            this.BtnToolsInstallRomsCenter.PressTextColor = System.Drawing.Color.White;
-            this.BtnToolsInstallRomsCenter.Size = new System.Drawing.Size(150, 26);
-            this.BtnToolsInstallRomsCenter.Style = MetroSet_UI.Enums.Style.Light;
-            this.BtnToolsInstallRomsCenter.StyleManager = this.metroStyleManager;
-            this.BtnToolsInstallRomsCenter.TabIndex = 27;
-            this.BtnToolsInstallRomsCenter.Text = "Install Roms Center";
-            this.BtnToolsInstallRomsCenter.ThemeAuthor = "Narwin";
-            this.BtnToolsInstallRomsCenter.ThemeName = "MetroLight";
-            this.BtnToolsInstallRomsCenter.Click += new System.EventHandler(this.BtnToolsInstallRomsCenter_Click);
-            // 
-            // BtnToolsInstallDirectX
-            // 
-            this.BtnToolsInstallDirectX.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.BtnToolsInstallDirectX.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.BtnToolsInstallDirectX.DisabledForeColor = System.Drawing.Color.Gray;
-            this.BtnToolsInstallDirectX.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.BtnToolsInstallDirectX.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
-            this.BtnToolsInstallDirectX.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
-            this.BtnToolsInstallDirectX.HoverTextColor = System.Drawing.Color.White;
-            this.BtnToolsInstallDirectX.IsDerivedStyle = true;
-            this.BtnToolsInstallDirectX.Location = new System.Drawing.Point(611, 70);
-            this.BtnToolsInstallDirectX.Name = "BtnToolsInstallDirectX";
-            this.BtnToolsInstallDirectX.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.BtnToolsInstallDirectX.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.BtnToolsInstallDirectX.NormalTextColor = System.Drawing.Color.White;
-            this.BtnToolsInstallDirectX.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
-            this.BtnToolsInstallDirectX.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
-            this.BtnToolsInstallDirectX.PressTextColor = System.Drawing.Color.White;
-            this.BtnToolsInstallDirectX.Size = new System.Drawing.Size(150, 26);
-            this.BtnToolsInstallDirectX.Style = MetroSet_UI.Enums.Style.Light;
-            this.BtnToolsInstallDirectX.StyleManager = this.metroStyleManager;
-            this.BtnToolsInstallDirectX.TabIndex = 28;
-            this.BtnToolsInstallDirectX.Text = "Install DirectX";
-            this.BtnToolsInstallDirectX.ThemeAuthor = "Narwin";
-            this.BtnToolsInstallDirectX.ThemeName = "MetroLight";
-            this.BtnToolsInstallDirectX.Click += new System.EventHandler(this.BtnToolsInstallDirectX_Click);
+            this.BtnSaveSetting.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnSaveSetting.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnSaveSetting.DisabledForeColor = System.Drawing.Color.Gray;
+            this.BtnSaveSetting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.BtnSaveSetting.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.BtnSaveSetting.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.BtnSaveSetting.HoverTextColor = System.Drawing.Color.White;
+            this.BtnSaveSetting.IsDerivedStyle = true;
+            this.BtnSaveSetting.Location = new System.Drawing.Point(684, 13);
+            this.BtnSaveSetting.Name = "BtnSaveSetting";
+            this.BtnSaveSetting.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnSaveSetting.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnSaveSetting.NormalTextColor = System.Drawing.Color.White;
+            this.BtnSaveSetting.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.BtnSaveSetting.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.BtnSaveSetting.PressTextColor = System.Drawing.Color.White;
+            this.BtnSaveSetting.Size = new System.Drawing.Size(100, 35);
+            this.BtnSaveSetting.Style = MetroSet_UI.Enums.Style.Light;
+            this.BtnSaveSetting.StyleManager = this.metroStyleManager;
+            this.BtnSaveSetting.TabIndex = 14;
+            this.BtnSaveSetting.Text = "Save settings";
+            this.BtnSaveSetting.ThemeAuthor = "Narwin";
+            this.BtnSaveSetting.ThemeName = "MetroLight";
+            this.BtnSaveSetting.Click += new System.EventHandler(this.SaveSettingButton_Click);
             // 
             // MainWindows
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 600);
-            this.Controls.Add(this.metroSetSwitch1);
+            this.Controls.Add(this.msThemeSwitch);
             this.Controls.Add(this.lblThemeTxt);
             this.Controls.Add(this.TabSelection);
             this.Controls.Add(this.CloseControlBox);
@@ -1535,6 +1564,7 @@ namespace Main
             this.StyleManager = this.metroStyleManager;
             this.Text = "CoinOPS Config Tool";
             this.ThemeName = "MetroLight";
+            this.Load += new System.EventHandler(this.MainWindows_Load);
             this.TabSelection.ResumeLayout(false);
             this.TabMain.ResumeLayout(false);
             this.TabSystem.ResumeLayout(false);
@@ -1595,7 +1625,7 @@ namespace Main
         private MetroSet_UI.Controls.MetroSetLabel TxtSysSelectSystem;
         private MetroSet_UI.Controls.MetroSetButton btnMainBrowse;
         private MetroSet_UI.Controls.MetroSetLabel lblThemeTxt;
-        private MetroSet_UI.Controls.MetroSetSwitch metroSetSwitch1;
+        private MetroSet_UI.Controls.MetroSetSwitch msThemeSwitch;
         private MetroSet_UI.Controls.MetroSetLabel txtMainLauncherPath;
         private MetroSet_UI.Controls.MetroSetTextBox tbMainLauncherTxtPath;
         private MetroSet_UI.Controls.MetroSetLabel txtMainCollectionPath;
@@ -1616,6 +1646,7 @@ namespace Main
         private MetroSet_UI.Controls.MetroSetButton BtnToolsInstallRomsCenter;
         private MetroSet_UI.Controls.MetroSetLabel metroSetLabel1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private MetroSet_UI.Controls.MetroSetButton BtnSaveSetting;
     }
 }
 

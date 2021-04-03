@@ -7,6 +7,7 @@ using System.Data;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CoinOPS_Config_Tool.FilesManagement;
+using CoinOPS_Config_Tool.Properties;
 
 namespace Main
 {
@@ -64,11 +65,30 @@ namespace Main
         }
 
 
-     
-        // Select Theme
-        private void metroSetSwitch1_SwitchedChanged(object sender)
+        // Load saved setttings at launch
+        private void MainWindows_Load(object sender, EventArgs e)
         {
-            if (metroStyleManager.Style == MetroSet_UI.Enums.Style.Light)
+            tbMainCopsPath.Text = Settings.Default["CopsPath"].ToString();
+            SetPath();
+            msThemeSwitch.Switched = (bool)Settings.Default["Theme"];
+        }
+
+
+
+        // Save user settings
+        private void SaveSettingButton_Click(object sender, EventArgs e)
+        {
+            Settings.Default["Theme"] = msThemeSwitch.Switched;
+            Settings.Default["CopsPath"] = targetCopsPath;
+            Settings.Default.Save();
+        }
+
+
+
+        // Select Theme
+        private void MsThemeSwitch_SwitchedChanged(object sender)
+        {
+            if (msThemeSwitch.Switched == false)//(metroStyleManager.Style == MetroSet_UI.Enums.Style.Light)
             {
                 metroStyleManager.Style = MetroSet_UI.Enums.Style.Dark;
             }
@@ -85,6 +105,14 @@ namespace Main
         {
             folderbd.ShowDialog();
             tbMainCopsPath.Text = folderbd.SelectedPath;
+            SetPath();
+            //GetCopsTheme();
+        }
+
+
+        // Set Paths
+        private void SetPath()
+        {
             targetCopsPath = tbMainCopsPath.Text;
             targetEmulatorsPath = targetCopsPath + "\\emulators\\";
             tbMainEmuTxtPath.Text = targetEmulatorsPath;
@@ -92,7 +120,6 @@ namespace Main
             tbMainColTxtPath.Text = targetCollectionsPath;
             targetLauncherPath = targetCopsPath + "\\launchers.windows\\";
             tbMainLauncherTxtPath.Text = targetLauncherPath;
-            GetCopsTheme();
         }
 
         private void BtnEmuOpen_Click(object sender, EventArgs e)
@@ -111,7 +138,7 @@ namespace Main
 
         }
 
-        private void BtnCollectonOpen_Click(object sender, EventArgs e)
+        private void BtnCollectionOpen_Click(object sender, EventArgs e)
         { 
             if (!Directory.Exists(targetCollectionsPath))
             {
@@ -138,46 +165,6 @@ namespace Main
                 Process.Start(targetCollectionsPath);
             }
         }
-
-
-
-        // Settings Buttons
-        private void SettingButton_MouseHover(object sender, EventArgs e)
-        {
-            // To do show tooltip
-        }
-
-        private void SettingButton_MouseLeave(object sender, EventArgs e)
-        {
-            // To do hide tooltip
-        }
-
-        private void SettingButton_Click(object sender, EventArgs e)
-        {
-            //To do
-        }
-
-
-
-        //Save Button to XML
-        /*private void SaveButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                data = XmlManager.XmlDataReader("config.xml");
-                data.CopsPath = tbCopsPath.Text;
-                data.EmuPath = EmuTxtPath.Text;
-                data.LauncherPath = copsPath + "\\launchers.windows\\";
-                data.EmuPath = emulatorsPath;
-                //systemPathFolder = copsPath + selectedEmuName;
-                XmlManager.XmlDataWriter(data, "config.xml");
-                MetroSetMessageBox.Show(this, "data successfully saved!");
-            }
-            catch (Exception ex)
-            {
-                MetroSetMessageBox.Show(this, "an error occured" + ex.ToString());
-            }
-        }*/
 
 
 
@@ -279,15 +266,8 @@ namespace Main
 
 
 
-        // Delete temp files
-        private void BtnDeleteTemp_Click(object sender, EventArgs e)
-        {
-            EmptyTempFolder();
-        }
-
-
         // Install Visual Runtime AIO
-        private void btnInstallRuntime_Click(object sender, EventArgs e)
+        private void BtnInstallRuntime_Click(object sender, EventArgs e)
         {
             SetDownloadProgress();
             filesDownloader.DownloadVisualRuntime();
@@ -378,18 +358,6 @@ namespace Main
 
 
 
-        // Delete file in temp folder
-        public void EmptyTempFolder()
-        {
-            var dir = new DirectoryInfo(tempFolder);
-            foreach (var file in Directory.GetFiles(dir.ToString()))
-            {
-                File.Delete(file);
-            }
-        }
-
-
-
         // Set System text and image
         private void CbSysSelSystem_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -453,7 +421,7 @@ namespace Main
 
         }
 
-        private void GetCopsTheme()
+        /*private void GetCopsTheme()
         {
             using (var reader = new StreamReader(targetCopsPath + "\\settings.conf"))
             {
@@ -484,14 +452,14 @@ namespace Main
                         tbSettingTheme.Text = "Unknown theme";
                         MetroSetMessageBox.Show(this, "You are using an unknown theme");
                         break;
-                    }*/
+                    }
 
                 }
 
                 reader.Close();
             }
 
-        }
+        }*/
 
 
     }
