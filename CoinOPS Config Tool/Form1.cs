@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using MetroSet_UI.Forms;
 using System.Diagnostics;
 using System.Xml;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CoinOPS_Config_Tool.FilesManagement;
@@ -65,9 +60,11 @@ namespace Main
         {
             InitializeComponent();
             this.StyleManager = metroStyleManager;
+            CheckForIllegalCrossThreadCalls = false;
         }
 
 
+     
         // Select Theme
         private void metroSetSwitch1_SwitchedChanged(object sender)
         {
@@ -95,7 +92,7 @@ namespace Main
             tbMainColTxtPath.Text = targetCollectionsPath;
             targetLauncherPath = targetCopsPath + "\\launchers.windows\\";
             tbMainLauncherTxtPath.Text = targetLauncherPath;
-                        GetCopsTheme();
+            GetCopsTheme();
         }
 
         private void BtnEmuOpen_Click(object sender, EventArgs e)
@@ -103,7 +100,7 @@ namespace Main
             // Determine whether the directory exists.
             if (!Directory.Exists(targetEmulatorsPath))
             {
-                MessageBox.Show("Folder not found.");
+                MetroSetMessageBox.Show(this, "Folder not found.");
                 return;
             }
 
@@ -118,7 +115,7 @@ namespace Main
         { 
             if (!Directory.Exists(targetCollectionsPath))
             {
-                MessageBox.Show("Folder not found.");
+                MetroSetMessageBox.Show(this, "Folder not found.");
                 return;
             }
 
@@ -132,7 +129,7 @@ namespace Main
         {
             if (!Directory.Exists(targetCollectionsPath))
             {
-                MessageBox.Show("Folder not found.");
+                MetroSetMessageBox.Show(this, "Folder not found.");
                 return;
             }
 
@@ -174,11 +171,11 @@ namespace Main
                 data.EmuPath = emulatorsPath;
                 //systemPathFolder = copsPath + selectedEmuName;
                 XmlManager.XmlDataWriter(data, "config.xml");
-                MessageBox.Show("data successfully saved!");
+                MetroSetMessageBox.Show(this, "data successfully saved!");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("an error occured" + ex.ToString());
+                MetroSetMessageBox.Show(this, "an error occured" + ex.ToString());
             }
         }*/
 
@@ -197,7 +194,7 @@ namespace Main
                 // Determine whether the directory exists.
                 if (Directory.Exists(sourceCollectionPath + systemName))
                 {
-                    MessageBox.Show("That system directory exists already.");
+                    MetroSetMessageBox.Show(this, "That system directory exists already.");
                     return;
                 }
                 else
@@ -207,14 +204,14 @@ namespace Main
                     string openDir = targetCollectionsPath + systemName;
                     CopySystemLauncher();
                     extractor.ExtractFile(zipSource, targetFolder);
-                    MessageBox.Show("All directories were created successfully");
+                    MetroSetMessageBox.Show(this, "All directories were created successfully");
                     if (Directory.Exists(openDir))
                     {
                         Process.Start(openDir);
                     }
                     else
                     {
-                        MessageBox.Show("The target directory not found");
+                        MetroSetMessageBox.Show(this, "The target directory not found");
                     }
 
                 }
@@ -282,12 +279,12 @@ namespace Main
 
 
 
-
         // Delete temp files
         private void BtnDeleteTemp_Click(object sender, EventArgs e)
         {
             EmptyTempFolder();
         }
+
 
         // Install Visual Runtime AIO
         private void btnInstallRuntime_Click(object sender, EventArgs e)
@@ -331,6 +328,54 @@ namespace Main
             }
         }
 
+        // Install DirectX
+        private void BtnToolsInstallDirectX_Click(object sender, EventArgs e)
+        {
+
+            string directX = tempFolder + "dxwebsetup.exe";
+
+            if (File.Exists(directX))
+            {
+                Process.Start(directX);
+            }
+
+            else
+            {
+                SetDownloadProgress();
+                filesDownloader.DownloadDirectX();
+                if (!filesDownloader.isDownloading)
+                {
+                    zipSource = tempFolder + "dxwebsetup.exe";
+                    Process.Start(directX);
+                }
+            }
+        }
+
+        // Install Romcenter
+        private void BtnToolsInstallRomsCenter_Click(object sender, EventArgs e)
+        {
+
+            string romcenter = tempFolder + "romcenter32_4.1.1.exe";
+
+            if (File.Exists(romcenter))
+            {
+                Process.Start(romcenter);
+            }
+
+            else
+            {
+                filesDownloader.DownloadRomcenter();
+                SetDownloadProgress();
+                filesDownloader.isDownloading = false;
+                if (!filesDownloader.isDownloading)
+                {
+                    Process.Start(romcenter);
+                }
+            }
+
+
+        }
+
 
 
         // Delete file in temp folder
@@ -359,12 +404,13 @@ namespace Main
 
             else
             {
-                MessageBox.Show("Description unavailable");
+                MetroSetMessageBox.Show(this, "Description unavailable");
             }
             fileToDisplay = sourceSystemImagePath + systemName + ".jpg";
             logoToDisplay = sourceSystemLogoPath + systemName + ".png";
             SystemPictureBox.ImageLocation = fileToDisplay;
-            SysLogoPictureBox.BackColor = Color.Transparent;
+            lblSysTxtInfo.BorderStyle = BorderStyle.FixedSingle;
+            SystemPictureBox.BorderStyle = BorderStyle.FixedSingle;
             SysLogoPictureBox.ImageLocation = logoToDisplay;
         }
 
@@ -386,7 +432,6 @@ namespace Main
         public void SetDownloadProgress()
         {
             lblToolsStatusValue.Text = filesDownloader.statusTxt;
-            ToolsProgressBar.Value = filesDownloader.completionBar;
             lblToolsDownloadedValue.Text = filesDownloader.downloadedSize;
             lblToolsDownloadSpeedValue.Text = filesDownloader.downloadSpeed;
             TxtEmuPercent.Text = filesDownloader.completionTxt;
@@ -403,7 +448,7 @@ namespace Main
 
             else
             {
-                MessageBox.Show("No theme available");
+                MetroSetMessageBox.Show(this, "No theme available");
             }
 
         }
@@ -416,30 +461,30 @@ namespace Main
                 {
                     var layout = reader.ReadLine();
 
-                    if (layout.Contains("Worlds"))
+                    if (layout.Contains("Worlds") == true)
                     {
                         copsTheme = layout;
                         tbSettingTheme.Text = "Worlds";
                         break;
                     }
-                    else if (layout.Contains("Animatic"))
+                    else if (layout.Contains("Animatic") == true)
                     {
                         copsTheme = layout;
                         tbSettingTheme.Text = "Animatic";
                         break;
                     }
-                    else if (layout.Contains("Flatio"))
+                    else if (layout.Contains("Flatio") == true)
                     {
                         copsTheme = layout;
                         tbSettingTheme.Text = "Flatio";
                         break;
                     }
-                    else
+                    /*else
                     {
                         tbSettingTheme.Text = "Unknown theme";
-                        MessageBox.Show("You are using an unknown theme");
+                        MetroSetMessageBox.Show(this, "You are using an unknown theme");
                         break;
-                    }
+                    }*/
 
                 }
 
@@ -447,7 +492,7 @@ namespace Main
             }
 
         }
-    
+
 
     }
 }
