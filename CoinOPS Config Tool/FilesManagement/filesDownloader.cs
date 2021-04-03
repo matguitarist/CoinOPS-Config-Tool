@@ -1,6 +1,7 @@
 ﻿using AltoHttp;
 using System;
 using System.IO;
+using System.Net;
 using System.Windows.Forms;
 using MetroSet_UI.Forms;
 
@@ -22,6 +23,7 @@ namespace CoinOPS_Config_Tool.FilesManagement
         public string downloadStatus;
         public string statusTxt;
         public string progressionValue;
+        private readonly string tempFolder = Path.GetTempPath();
 
 
         // Manage Download
@@ -48,12 +50,6 @@ namespace CoinOPS_Config_Tool.FilesManagement
 
         public void HttpDownloader_progressChanged(object sender, ProgressChangedEventArgs e)
         {
-            //ToolsProgressBarTool.Value = completionBar;
-            //lblToolsDownloadedValue.Text = completionTxt;
-            //lblToolsSpeedValue.Text = downloadSpeed;
-            //lblToolsDownloadedValue.Text = downloadedSize;
-            //lblStatus.Text = downloadStatus;
-
             downloadSpeed = string.Format("{0} MB/s", (e.SpeedInBytes / 1024d / 1024d).ToString("0.00"));
             completionTxt = $"{e.Progress.ToString("0.00")} % ";
             completionBar = (int)e.Progress;
@@ -63,6 +59,7 @@ namespace CoinOPS_Config_Tool.FilesManagement
 
         public void HttpDownloader_DownloadCompleted(object sender, EventArgs e)
         {
+            
             {
                 statusTxt = "Download completed";
                 progressionValue = "100%";
@@ -84,5 +81,23 @@ namespace CoinOPS_Config_Tool.FilesManagement
             downloadLink = "https://www.romvault.com/trrntzip/download/TrrntZipUI280.zip";
             DownloadingFile();
         }
+
+        public void DownloadRomcenter()
+        {
+
+            //downloadLink = "http://www.romcenter.com/downloadfile.php?file=romcenter32_4.1.1.exe";
+            using (var client = new WebClient())
+            {
+                client.DownloadFile("http://www.romcenter.com/downloadfile.php?file=romcenter32_4.1.1.exe", tempFolder + "romcenter32_4.1.1.exe");
+                isDownloading = true;
+            }
+        }
+
+        public void DownloadDirectX()
+        {
+            downloadLink = "https://download.microsoft.com/download/1/7/1/1718CCC4-6315-4D8E-9543-8E28A4E18C4C/dxwebsetup.exe";
+            DownloadingFile();
+        }
+
     }
 }
