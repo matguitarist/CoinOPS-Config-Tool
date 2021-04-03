@@ -39,8 +39,8 @@ namespace CoinOPS_Config_Tool.FilesManagement
             }
             else if (selectedEmuName == "Dolphin")
             {
-                EmuURL = "https://dl.dolphin-emu.org/builds/be/d1/dolphin-master-5.0-13603-x64.7z";
-                downloadedFileName = "dolphin-master-5.0-13603-x64.7z";
+                EmuURL = "https://dl.dolphin-emu.org/builds/5f/09/dolphin-master-5.0-13965-x64.7z";
+                downloadedFileName = "dolphin-master-5.0-13965-x64.7z";
                 systemType = "Gamecube and Wii";
             }
             else if (selectedEmuName == "Cemu")
@@ -65,8 +65,8 @@ namespace CoinOPS_Config_Tool.FilesManagement
             }
             else if (selectedEmuName == "Rpcs3")
             {
-                EmuURL = "https://github.com/RPCS3/rpcs3-binaries-win/releases/download/build-2c05e9719db6d30498c9009631723a1344a90463/rpcs3-v0.0.15-11987-2c05e971_win64.7z";
-                downloadedFileName = "rpcs3-v0.0.15-11987-2c05e971_win64.7z";
+                EmuURL = "https://github.com/RPCS3/rpcs3-binaries-win/releases/download/build-e57f36fc5bdddaab049700f1f06a74d564674158/rpcs3-v0.0.15-12039-e57f36fc_win64.7z";
+                downloadedFileName = "rpcs3-v0.0.15-12039-e57f36fc_win64.7z";
                 systemType = "PS3 Emulator";
             }
             else if (selectedEmuName == "PPSSPP")
