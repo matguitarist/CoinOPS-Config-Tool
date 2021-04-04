@@ -14,7 +14,6 @@ namespace Main
     public partial class MainWindows : MetroSetForm
     {
         // Gain Access to other classes
-        private readonly Data data = new Data();
         private readonly FilesDownloader filesDownloader = new FilesDownloader();
         private readonly Extractor extractor = new Extractor();
         private readonly SystemsAndTools sysAndTools = new SystemsAndTools();
@@ -24,11 +23,12 @@ namespace Main
 
         // Source path variable
         private readonly string sourceLauncherPath = Directory.GetCurrentDirectory() + "\\launchers\\";
-        private readonly string sourceToolsPath = Directory.GetCurrentDirectory() + "\\Tools\\";
+        //private readonly string sourceToolsPath = Directory.GetCurrentDirectory() + "\\Tools\\";
         private readonly string sourceCollectionPath = Directory.GetCurrentDirectory() + "\\collections\\";
         private readonly string sourceSystemImagePath = Directory.GetCurrentDirectory() + "\\Systems_Images\\";
         private readonly string sourceSystemLogoPath = Directory.GetCurrentDirectory() + "\\Systems_Logos\\";
         private readonly string sourceSystemInfoPath = Directory.GetCurrentDirectory() + "\\Systems_Infos\\";
+        private readonly string sourceThemeImagePath = Directory.GetCurrentDirectory() + "\\CopsThemesImages\\";
 
 
         // Target path variable
@@ -37,11 +37,14 @@ namespace Main
         private string targetToolsPath;
         private string targetCollectionsPath;
         private string targetLauncherPath;
+        private string targetThemePath;
 
 
         private string systemName;
         private string fileToDisplay;
         private string logoToDisplay;
+        private string actualThemeImage;
+        private string selectedThemeImage;
 
         public string selectedEmuName;
 
@@ -71,6 +74,7 @@ namespace Main
             tbMainCopsPath.Text = Settings.Default["CopsPath"].ToString();
             SetPath();
             msThemeSwitch.Switched = (bool)Settings.Default["Theme"];
+            GetCopsTheme();
         }
 
 
@@ -120,6 +124,7 @@ namespace Main
             tbMainColTxtPath.Text = targetCollectionsPath;
             targetLauncherPath = targetCopsPath + "\\launchers.windows\\";
             tbMainLauncherTxtPath.Text = targetLauncherPath;
+            targetThemePath = targetCopsPath + "\\layouts\\";
         }
 
         private void BtnEmuOpen_Click(object sender, EventArgs e)
@@ -234,7 +239,7 @@ namespace Main
             if (!filesDownloader.isDownloading)
             {
                 zipSource = sysAndTools.downloadedFileName;
-                //targetFolder = emulatorsPath + selectedEmuName;
+                targetFolder = targetEmulatorsPath + selectedEmuName;
                 extractor.ExtractFile(zipSource, targetFolder);
             }
         }
@@ -405,62 +410,91 @@ namespace Main
             TxtEmuPercent.Text = filesDownloader.completionTxt;
         }
 
+
+
+        // Themes Functions
         private void CbSettingTheme_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string infoTxtPath = targetCopsPath + "setting.txt";
-            if (File.Exists(infoTxtPath))
+
+            string themeName = cbSettingTheme.Text;
+            pbSelectedTheme.ImageLocation = sourceThemeImagePath + themeName + ".jpg";
+            sysAndTools.selectedThemeName = cbSettingTheme.Text;
+            //string infoTxtPath = targetCopsPath + "setting.txt";
+
+            /*if (File.Exists(infoTxtPath))
             {
                 string readText = File.ReadAllText(infoTxtPath);
-                lblSysTxtInfo.Text = readText;
+                lblSysTxtInfo.Text = readText; 
+
             }
 
             else
             {
                 MetroSetMessageBox.Show(this, "No theme available");
-            }
+            }*/
 
         }
 
-        /*private void GetCopsTheme()
+        private void GetCopsTheme()
         {
             using (var reader = new StreamReader(targetCopsPath + "\\settings.conf"))
             {
+
                 while (!reader.EndOfStream)
                 {
+
                     var layout = reader.ReadLine();
+
+                    
 
                     if (layout.Contains("Worlds") == true)
                     {
                         copsTheme = layout;
                         tbSettingTheme.Text = "Worlds";
-                        break;
+                        
                     }
                     else if (layout.Contains("Animatic") == true)
                     {
                         copsTheme = layout;
                         tbSettingTheme.Text = "Animatic";
-                        break;
                     }
                     else if (layout.Contains("Flatio") == true)
                     {
                         copsTheme = layout;
                         tbSettingTheme.Text = "Flatio";
-                        break;
                     }
                     /*else
                     {
                         tbSettingTheme.Text = "Unknown theme";
                         MetroSetMessageBox.Show(this, "You are using an unknown theme");
                         break;
-                    }
+                    }*/
+
 
                 }
-
                 reader.Close();
+
+                string themeName = tbSettingTheme.Text;
+                //string themeImage = sourceThemeImagePath + themeName + ".jpg";
+
+                pbActualTheme.ImageLocation = sourceThemeImagePath + themeName + ".jpg";
             }
 
-        }*/
+        }
 
+        private void BtnThemeDownload_Click(object sender, EventArgs e)
+        {
+            sysAndTools.DownloadTheme();
+            sysAndTools.selectedThemeName = cbSettingTheme.Text;
+            filesDownloader.downloadLink = sysAndTools.themeURL;
 
+            filesDownloader.DownloadingFile();
+            if (!filesDownloader.isDownloading)
+            {
+                zipSource = sysAndTools.downloadedFileName;
+                targetFolder = targetThemePath;
+                extractor.ExtractFile(zipSource, targetThemePath);
+            }
+        }
     }
 }
