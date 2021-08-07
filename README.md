@@ -6,6 +6,7 @@
 </p>
 
 
+
 This project is a small program to help people manage their CoinOPS or Retro FE configuration. It still in pretty early stage of development so right now you'll find many bug until first release. it's develop with Visual Studio with C#.
 
 You can add new Systems and their Launchers, download recommanded emulators and some useful tools to help you with your roms.
@@ -17,5 +18,6 @@ This is my first program so the coding is far from perfect and many functions wi
 If you have any suggestions or tools you think that worth adding, let me know and i'll do my best to review it and figure how i can implement it. 
 
 Thank !
+
 
 ## Matguitarist
