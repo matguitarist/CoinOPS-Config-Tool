@@ -14,7 +14,8 @@ namespace Main
     public partial class MainWindows : MetroSetForm
     {
         // Gain Access to other classes
-        //private readonly Extractor extractor = new Extractor();
+
+        /*private readonly Extractor extractor = new Extractor();*/
         private readonly SystemsAndTools sysAndTools = new SystemsAndTools();
         private readonly FolderBrowserDialog folderbd = new FolderBrowserDialog();
         private readonly FileReadWrite fileReadAndWrite = new FileReadWrite();
@@ -22,10 +23,6 @@ namespace Main
         // Source path variable
         private readonly string sourceLauncherPath = Directory.GetCurrentDirectory() + "\\launchers\\";
         private readonly string sourceToolsPath = Directory.GetCurrentDirectory() + "\\Tools\\";
-        private readonly string sourceCollectionPath = Directory.GetCurrentDirectory() + "\\collections\\";
-        private readonly string sourceSystemImagePath = Directory.GetCurrentDirectory() + "\\Systems_Images\\";
-        private readonly string sourceSystemLogoPath = Directory.GetCurrentDirectory() + "\\Systems_Logos\\";
-        private readonly string sourceSystemInfoPath = Directory.GetCurrentDirectory() + "\\Systems_Infos\\";
         private readonly string sourceThemeImagePath = Directory.GetCurrentDirectory() + "\\CopsThemesImages\\";
 
         // Target path variable
@@ -35,11 +32,10 @@ namespace Main
         private string targetCollectionsPath;
         private string targetLauncherPath;
         private string targetThemePath;
-        private string FolderPath;
+
 
         private string systemName;
-        private string fileToDisplay;
-        private string logoToDisplay;
+
         //private string actualThemeImage;
         //private string selectedThemeImage;
 
@@ -50,11 +46,10 @@ namespace Main
 
         // Downloader variable
         public HttpDownloader httpDownloader;
-
+        public string downloadLink;
         public bool isDownloading;
 
-        public string downloadLink;
-
+        //Download Status variable
         public string statusTxt;
         public string downloadSpeed;
         public string downloadedSize;
@@ -65,13 +60,12 @@ namespace Main
 
         // Extractor Variable
         public string zipSource;
-
         public string targetFolder;
 
         // CoinOPS Setting Variable
         private string copsTheme;
         private bool toolsDownloadClicked;
-        private bool isExtracting;
+
 
         public bool EmuDownloadClicked { get; private set; }
 
@@ -130,8 +124,9 @@ namespace Main
 
         private void SetPath()
         {
-            targetCopsPath = tbMainCopsPath.Text;
+            string FolderPath;
 
+            targetCopsPath = tbMainCopsPath.Text;
             targetEmulatorsPath = targetCopsPath + "\\emulators\\";
             FolderPath = targetEmulatorsPath;
             CreateDir(FolderPath);
@@ -226,6 +221,7 @@ namespace Main
         // Add new system
         private void BntSysAddSystem_Click(object sender, EventArgs e)
         {
+            string sourceCollectionPath = Directory.GetCurrentDirectory() + "\\collections\\";
             systemName = cbSysSelSystem.Text;
 
             zipSource = sourceCollectionPath + systemName + ".7z";
@@ -316,7 +312,7 @@ namespace Main
         private void BtnInstallRuntime_Click(object sender, EventArgs e)
         {
             toolsDownloadClicked = true;
-            downloadLink = "https://github.com/abbodi1406/vcredist/releases/download/v0.45.0/VisualCppRedist_AIO_x86_x64_45.zip";
+            downloadLink = "https://github.com/abbodi1406/vcredist/releases/download/v0.51.0/VisualCppRedist_AIO_x86_x64_51.zip";
             DownloadingFile(sender, e);
             toolsDownloadClicked = false;
             if (!isDownloading)
@@ -408,7 +404,13 @@ namespace Main
         // Set System text and image
         private void CbSysSelSystem_SelectedIndexChanged(object sender, EventArgs e)
         {
-            systemName = cbSysSelSystem.Text;
+            string sourceSystemImagePath = Directory.GetCurrentDirectory() + "\\Systems_Images\\";
+            string sourceSystemLogoPath = Directory.GetCurrentDirectory() + "\\Systems_Logos\\";
+            string sourceSystemInfoPath = Directory.GetCurrentDirectory() + "\\Systems_Infos\\";
+            string fileToDisplay;
+            string logoToDisplay;
+
+        systemName = cbSysSelSystem.Text;
 
             string infoTxtPath = sourceSystemInfoPath + systemName + ".txt";
             if (File.Exists(infoTxtPath))
@@ -651,6 +653,8 @@ namespace Main
         {
 
             string zPath = "7za.exe"; //add to project and set CopyToOuputDir
+            bool isExtracting;
+
             try
             {
                 ProcessStartInfo pro = new ProcessStartInfo
