@@ -3,7 +3,7 @@
 
 
 <p align="center">
-  <img width="40%" alt="CoinOPS Config Tool" src="https://user-images.githubusercontent.com/863127/128584821-ab8846d0-57ee-4e22-8145-0584efc0bb23.png" />
+  <img width="40%" hspace="20" alt="CoinOPS Config Tool" src="https://user-images.githubusercontent.com/863127/128584821-ab8846d0-57ee-4e22-8145-0584efc0bb23.png" />
   <img width=40%" alt="CoinOPSConfigToolEmu" src="https://user-images.githubusercontent.com/863127/128585135-fd60179b-a59c-4676-92c7-c25d4d26fa81.png" />
 </p>
 
