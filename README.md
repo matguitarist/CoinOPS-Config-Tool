@@ -1,4 +1,4 @@
-CoinOPS-Config-Tool
+# CoinOPS-Config-Tool
 
 <p align="center">
   <img width="672" alt="CoinOPS Config Tool" src="https://user-images.githubusercontent.com/863127/128584821-ab8846d0-57ee-4e22-8145-0584efc0bb23.png">
