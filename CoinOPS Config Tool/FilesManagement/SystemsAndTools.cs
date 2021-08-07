@@ -95,8 +95,8 @@ namespace CoinOPS_Config_Tool.FilesManagement
 
             if (selectedThemeName == "Worlds")
             {
-                themeURL = "https://github.com/mamedev/mame/releases/download/mame0230/mame0230b_64bit.exe";
-                downloadedFileName = "mame0230b_64bit.exe";
+                themeURL = "https://github.com/matguitarist/CoinOPS-Config-Tool/raw/master/CoinOPS%20Config%20Tool/Themes/Worlds.7z";
+                downloadedFileName = tempFolder + "Worlds.7z";
             }
 
             else if (selectedThemeName == "Animatic")
