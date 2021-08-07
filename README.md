@@ -6,11 +6,9 @@
   <img width="45%" hspace="30" alt="CoinOPS Config Tool" src="https://user-images.githubusercontent.com/863127/128584821-ab8846d0-57ee-4e22-8145-0584efc0bb23.png" />
   <img width=45%" alt="CoinOPSConfigToolEmu" src="https://user-images.githubusercontent.com/863127/128585135-fd60179b-a59c-4676-92c7-c25d4d26fa81.png" />
 </p>
-
-
-
-
-                                                                                                                                                      
+ 
+ 
+                                                                                                                                                       
                                                                                                                                                       
 This project is a small program to help people manage their CoinOPS or Retro FE configuration. It still in pretty early stage of development so right now you'll probably find many bugs until first release. it's been develop with Visual Studio with C#.
 
