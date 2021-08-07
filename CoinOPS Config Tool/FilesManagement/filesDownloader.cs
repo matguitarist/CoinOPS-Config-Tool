@@ -1,4 +1,5 @@
 ﻿using AltoHttp;
+using AltoHttp.Exceptions;
 using System;
 using System.IO;
 using System.Net;
@@ -40,21 +41,36 @@ namespace CoinOPS_Config_Tool.FilesManagement
             }
             else
             {
-                isDownloading = true;
                 httpDownloader = new HttpDownloader(downloadLink, path);
-                httpDownloader.DownloadCompleted += HttpDownloader_DownloadCompleted;
                 httpDownloader.ProgressChanged += HttpDownloader_progressChanged;
+                httpDownloader.DownloadCompleted += HttpDownloader_DownloadCompleted;
+                httpDownloader.ErrorOccured += HttpDownloader_ErrorOccured;
+                isDownloading = true;
                 httpDownloader.Start();
             }
         }
 
         public void HttpDownloader_progressChanged(object sender, ProgressChangedEventArgs e)
         {
-            downloadSpeed = string.Format("{0} MB/s", (e.SpeedInBytes / 1024d / 1024d).ToString("0.00"));
+            //downloadSpeed = string.Format("{0} MB/s", (e.SpeedInBytes / 1024d / 1024d).ToString("0.00"));
+            downloadSpeed = e.SpeedInBytes.ToHumanReadableSize() + "/s";
             completionTxt = $"{e.Progress.ToString("0.00")} % ";
             completionBar = (int)e.Progress;
-            downloadedSize = string.Format("{0} MB", (httpDownloader.TotalBytesReceived / 1024d / 1024d).ToString("0.00"));
+            //downloadedSize = string.Format("{0} MB", (httpDownloader.TotalBytesReceived / 1024d / 1024d).ToString("0.00"));
+            downloadedSize = string.Format("{0} / {1}", httpDownloader.TotalBytesReceived.ToHumanReadableSize(),
+                httpDownloader.Info.Length >0 ? httpDownloader.Info.Length.ToHumanReadableSize() : "Unknown");
             downloadStatus = "Downloading ...";
+        }
+        
+
+        public void HttpDownloader_ErrorOccured(object sender, ErrorEventArgs e)
+        {
+            var ex = e.GetException();
+            if (ex is FileValidationFailedException)
+            {
+                httpDownloader.Pause();
+            }
+            MessageBox.Show("Error: " + e.GetException().Message + " " + e.GetException().StackTrace);
         }
 
         public void HttpDownloader_DownloadCompleted(object sender, EventArgs e)
@@ -65,38 +81,6 @@ namespace CoinOPS_Config_Tool.FilesManagement
                 progressionValue = "100%";
                 isDownloading = false;
             }
-        }
-
-
-
-        public void DownloadVisualRuntime()
-        {
-            downloadLink = "https://github.com/abbodi1406/vcredist/releases/download/v0.45.0/VisualCppRedist_AIO_x86_x64_45.zip";
-            DownloadingFile();
-        }
-
-
-        public void DownloadTorrentZip()
-        {
-            downloadLink = "https://www.romvault.com/trrntzip/download/TrrntZipUI280.zip";
-            DownloadingFile();
-        }
-
-        public void DownloadRomcenter()
-        {
-
-            //downloadLink = "http://www.romcenter.com/downloadfile.php?file=romcenter32_4.1.1.exe";
-            using (var client = new WebClient())
-            {
-                client.DownloadFile("http://www.romcenter.com/downloadfile.php?file=romcenter32_4.1.1.exe", tempFolder + "romcenter32_4.1.1.exe");
-                isDownloading = true;
-            }
-        }
-
-        public void DownloadDirectX()
-        {
-            downloadLink = "https://download.microsoft.com/download/1/7/1/1718CCC4-6315-4D8E-9543-8E28A4E18C4C/dxwebsetup.exe";
-            DownloadingFile();
         }
 
     }

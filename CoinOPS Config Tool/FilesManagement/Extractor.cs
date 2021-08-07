@@ -31,7 +31,7 @@ namespace CoinOPS_Config_Tool.FilesManagement
                 statusTxt = "Waiting";
                 MessageBox.Show("Extracted Completed");
             }
-            catch (System.Exception Ex)
+            catch (System.Exception)
             {
                 //handle error
                 MessageBox.Show("An error has occured");
