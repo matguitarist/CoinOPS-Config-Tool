@@ -71,8 +71,10 @@ namespace Main
 
         public MainWindows()
         {
+            float programVersion = 0.01f;
             InitializeComponent();
             this.StyleManager = metroStyleManager;
+            lblVersionValue.Text = programVersion.ToString();
         }
 
 
@@ -528,6 +530,8 @@ namespace Main
                 targetFolder = targetThemePath;
                 ExtractFile(zipSource, targetThemePath);
             }
+
+
         }
 
 

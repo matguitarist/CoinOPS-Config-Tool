@@ -63,7 +63,7 @@ namespace Main
             this.lblEmuDownloadStatus = new MetroSet_UI.Controls.MetroSetLabel();
             this.lblEmuStatusTxt = new MetroSet_UI.Controls.MetroSetLabel();
             this.lblEmuDownloadedValue = new MetroSet_UI.Controls.MetroSetLabel();
-            this.lblDownloadSpeedValue = new MetroSet_UI.Controls.MetroSetLabel();
+            this.lblEmuDownloadSpeedValue = new MetroSet_UI.Controls.MetroSetLabel();
             this.lblEmuPercent = new MetroSet_UI.Controls.MetroSetLabel();
             this.EmuProgressBar = new MetroSet_UI.Controls.MetroSetProgressBar();
             this.lblEmuDownloadSpeed = new MetroSet_UI.Controls.MetroSetLabel();
@@ -72,6 +72,7 @@ namespace Main
             this.cbEmuSelecEmulator = new MetroSet_UI.Controls.MetroSetComboBox();
             this.TxtEmuFolderDestination = new MetroSet_UI.Controls.MetroSetLabel();
             this.TabTools = new MetroSet_UI.Child.MetroSetSetTabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BtnToolsInstallDirectX = new MetroSet_UI.Controls.MetroSetButton();
             this.BtnToolsInstallRomsCenter = new MetroSet_UI.Controls.MetroSetButton();
             this.metroSetLabel1 = new MetroSet_UI.Controls.MetroSetLabel();
@@ -84,8 +85,9 @@ namespace Main
             this.ToolsProgressBar = new MetroSet_UI.Controls.MetroSetProgressBar();
             this.lblToolDownloadSpeed = new MetroSet_UI.Controls.MetroSetLabel();
             this.lblToolDownloadedTxt = new MetroSet_UI.Controls.MetroSetLabel();
-            this.TxtEmuPercent = new MetroSet_UI.Controls.MetroSetLabel();
+            this.lblToolsPercent = new MetroSet_UI.Controls.MetroSetLabel();
             this.metroSetSetTabPage1 = new MetroSet_UI.Child.MetroSetSetTabPage();
+            this.BtnDownloadApply = new MetroSet_UI.Controls.MetroSetButton();
             this.pbSelectedTheme = new System.Windows.Forms.PictureBox();
             this.pbActualTheme = new System.Windows.Forms.PictureBox();
             this.tbSettingTheme = new MetroSet_UI.Controls.MetroSetTextBox();
@@ -98,8 +100,9 @@ namespace Main
             this.lblThemeTxt = new MetroSet_UI.Controls.MetroSetLabel();
             this.msThemeSwitch = new MetroSet_UI.Controls.MetroSetSwitch();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.BtnDownloadApply = new MetroSet_UI.Controls.MetroSetButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.metroSetContextMenuStrip1 = new MetroSet_UI.Controls.MetroSetContextMenuStrip();
+            this.lblVersion = new MetroSet_UI.Controls.MetroSetLabel();
+            this.lblVersionValue = new MetroSet_UI.Controls.MetroSetLabel();
             this.TabSelection.SuspendLayout();
             this.TabMain.SuspendLayout();
             this.TabSystem.SuspendLayout();
@@ -107,11 +110,11 @@ namespace Main
             ((System.ComponentModel.ISupportInitialize)(this.SystemPictureBox)).BeginInit();
             this.TabEmulators.SuspendLayout();
             this.TabTools.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.metroSetSetTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSelectedTheme)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbActualTheme)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // CloseControlBox
@@ -163,7 +166,7 @@ namespace Main
             this.TabSelection.ItemSize = new System.Drawing.Size(100, 38);
             this.TabSelection.Location = new System.Drawing.Point(50, 100);
             this.TabSelection.Name = "TabSelection";
-            this.TabSelection.SelectedIndex = 4;
+            this.TabSelection.SelectedIndex = 0;
             this.TabSelection.SelectedTextColor = System.Drawing.Color.White;
             this.TabSelection.ShowToolTips = true;
             this.TabSelection.Size = new System.Drawing.Size(800, 450);
@@ -205,7 +208,7 @@ namespace Main
             this.TabMain.TabIndex = 0;
             this.TabMain.Text = "Main Path";
             this.TabMain.ThemeAuthor = "Narwin";
-            this.TabMain.ThemeName = "MetroLite";
+            this.TabMain.ThemeName = "MetroLight";
             this.TabMain.ToolTipText = "Main Path";
             // 
             // BtnSaveSetting
@@ -540,7 +543,7 @@ namespace Main
             this.TabSystem.TabIndex = 3;
             this.TabSystem.Text = "Systems";
             this.TabSystem.ThemeAuthor = "Narwin";
-            this.TabSystem.ThemeName = "MetroLite";
+            this.TabSystem.ThemeName = "MetroLight";
             this.TabSystem.ToolTipText = "System Tab";
             // 
             // SysLogoPictureBox
@@ -562,11 +565,11 @@ namespace Main
             this.lblSysTxtInfo.Name = "lblSysTxtInfo";
             this.lblSysTxtInfo.Size = new System.Drawing.Size(300, 182);
             this.lblSysTxtInfo.Style = MetroSet_UI.Enums.Style.Light;
-            this.lblSysTxtInfo.StyleManager = null;
+            this.lblSysTxtInfo.StyleManager = this.metroStyleManager;
             this.lblSysTxtInfo.TabIndex = 7;
             this.lblSysTxtInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblSysTxtInfo.ThemeAuthor = "Narwin";
-            this.lblSysTxtInfo.ThemeName = "MetroLite";
+            this.lblSysTxtInfo.ThemeName = "MetroLight";
             // 
             // SystemPictureBox
             // 
@@ -700,7 +703,7 @@ namespace Main
             this.TabEmulators.Controls.Add(this.lblEmuDownloadStatus);
             this.TabEmulators.Controls.Add(this.lblEmuStatusTxt);
             this.TabEmulators.Controls.Add(this.lblEmuDownloadedValue);
-            this.TabEmulators.Controls.Add(this.lblDownloadSpeedValue);
+            this.TabEmulators.Controls.Add(this.lblEmuDownloadSpeedValue);
             this.TabEmulators.Controls.Add(this.lblEmuPercent);
             this.TabEmulators.Controls.Add(this.EmuProgressBar);
             this.TabEmulators.Controls.Add(this.lblEmuDownloadSpeed);
@@ -720,7 +723,7 @@ namespace Main
             this.TabEmulators.TabIndex = 1;
             this.TabEmulators.Text = "Emulators";
             this.TabEmulators.ThemeAuthor = "Narwin";
-            this.TabEmulators.ThemeName = "MetroLite";
+            this.TabEmulators.ThemeName = "MetroLight";
             this.TabEmulators.ToolTipText = "Emulators Tab";
             // 
             // BtnEmuExtract
@@ -733,7 +736,7 @@ namespace Main
             this.BtnEmuExtract.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
             this.BtnEmuExtract.HoverTextColor = System.Drawing.Color.White;
             this.BtnEmuExtract.IsDerivedStyle = true;
-            this.BtnEmuExtract.Location = new System.Drawing.Point(678, 70);
+            this.BtnEmuExtract.Location = new System.Drawing.Point(669, 70);
             this.BtnEmuExtract.Name = "BtnEmuExtract";
             this.BtnEmuExtract.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
             this.BtnEmuExtract.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
@@ -741,7 +744,7 @@ namespace Main
             this.BtnEmuExtract.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
             this.BtnEmuExtract.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
             this.BtnEmuExtract.PressTextColor = System.Drawing.Color.White;
-            this.BtnEmuExtract.Size = new System.Drawing.Size(102, 26);
+            this.BtnEmuExtract.Size = new System.Drawing.Size(100, 26);
             this.BtnEmuExtract.Style = MetroSet_UI.Enums.Style.Light;
             this.BtnEmuExtract.StyleManager = this.metroStyleManager;
             this.BtnEmuExtract.TabIndex = 21;
@@ -768,7 +771,7 @@ namespace Main
             this.BtnEmuDownload.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
             this.BtnEmuDownload.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
             this.BtnEmuDownload.PressTextColor = System.Drawing.Color.White;
-            this.BtnEmuDownload.Size = new System.Drawing.Size(102, 26);
+            this.BtnEmuDownload.Size = new System.Drawing.Size(100, 26);
             this.BtnEmuDownload.Style = MetroSet_UI.Enums.Style.Light;
             this.BtnEmuDownload.StyleManager = this.metroStyleManager;
             this.BtnEmuDownload.TabIndex = 20;
@@ -825,7 +828,7 @@ namespace Main
             this.tbEmuFolderDestination.Multiline = false;
             this.tbEmuFolderDestination.Name = "tbEmuFolderDestination";
             this.tbEmuFolderDestination.ReadOnly = false;
-            this.tbEmuFolderDestination.Size = new System.Drawing.Size(760, 26);
+            this.tbEmuFolderDestination.Size = new System.Drawing.Size(750, 26);
             this.tbEmuFolderDestination.Style = MetroSet_UI.Enums.Style.Light;
             this.tbEmuFolderDestination.StyleManager = this.metroStyleManager;
             this.tbEmuFolderDestination.TabIndex = 17;
@@ -864,12 +867,12 @@ namespace Main
             this.TbEmuDownloadLink.Image = null;
             this.TbEmuDownloadLink.IsDerivedStyle = true;
             this.TbEmuDownloadLink.Lines = null;
-            this.TbEmuDownloadLink.Location = new System.Drawing.Point(20, 150);
+            this.TbEmuDownloadLink.Location = new System.Drawing.Point(20, 148);
             this.TbEmuDownloadLink.MaxLength = 32767;
             this.TbEmuDownloadLink.Multiline = false;
             this.TbEmuDownloadLink.Name = "TbEmuDownloadLink";
             this.TbEmuDownloadLink.ReadOnly = false;
-            this.TbEmuDownloadLink.Size = new System.Drawing.Size(760, 26);
+            this.TbEmuDownloadLink.Size = new System.Drawing.Size(750, 26);
             this.TbEmuDownloadLink.Style = MetroSet_UI.Enums.Style.Light;
             this.TbEmuDownloadLink.StyleManager = this.metroStyleManager;
             this.TbEmuDownloadLink.TabIndex = 15;
@@ -883,14 +886,14 @@ namespace Main
             // 
             this.lblEmuDownloadStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmuDownloadStatus.IsDerivedStyle = true;
-            this.lblEmuDownloadStatus.Location = new System.Drawing.Point(660, 305);
+            this.lblEmuDownloadStatus.Location = new System.Drawing.Point(635, 320);
             this.lblEmuDownloadStatus.Name = "lblEmuDownloadStatus";
-            this.lblEmuDownloadStatus.Size = new System.Drawing.Size(80, 35);
+            this.lblEmuDownloadStatus.Size = new System.Drawing.Size(157, 35);
             this.lblEmuDownloadStatus.Style = MetroSet_UI.Enums.Style.Light;
             this.lblEmuDownloadStatus.StyleManager = this.metroStyleManager;
             this.lblEmuDownloadStatus.TabIndex = 14;
             this.lblEmuDownloadStatus.Text = "Waiting ...";
-            this.lblEmuDownloadStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblEmuDownloadStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblEmuDownloadStatus.ThemeAuthor = "Narwin";
             this.lblEmuDownloadStatus.ThemeName = "MetroLight";
             // 
@@ -898,9 +901,9 @@ namespace Main
             // 
             this.lblEmuStatusTxt.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmuStatusTxt.IsDerivedStyle = true;
-            this.lblEmuStatusTxt.Location = new System.Drawing.Point(527, 305);
+            this.lblEmuStatusTxt.Location = new System.Drawing.Point(499, 320);
             this.lblEmuStatusTxt.Name = "lblEmuStatusTxt";
-            this.lblEmuStatusTxt.Size = new System.Drawing.Size(130, 35);
+            this.lblEmuStatusTxt.Size = new System.Drawing.Size(142, 35);
             this.lblEmuStatusTxt.Style = MetroSet_UI.Enums.Style.Light;
             this.lblEmuStatusTxt.StyleManager = this.metroStyleManager;
             this.lblEmuStatusTxt.TabIndex = 13;
@@ -913,37 +916,37 @@ namespace Main
             // 
             this.lblEmuDownloadedValue.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmuDownloadedValue.IsDerivedStyle = true;
-            this.lblEmuDownloadedValue.Location = new System.Drawing.Point(146, 305);
+            this.lblEmuDownloadedValue.Location = new System.Drawing.Point(146, 320);
             this.lblEmuDownloadedValue.Name = "lblEmuDownloadedValue";
             this.lblEmuDownloadedValue.Size = new System.Drawing.Size(80, 35);
             this.lblEmuDownloadedValue.Style = MetroSet_UI.Enums.Style.Light;
             this.lblEmuDownloadedValue.StyleManager = this.metroStyleManager;
             this.lblEmuDownloadedValue.TabIndex = 12;
             this.lblEmuDownloadedValue.Text = "MB";
-            this.lblEmuDownloadedValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblEmuDownloadedValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblEmuDownloadedValue.ThemeAuthor = "Narwin";
             this.lblEmuDownloadedValue.ThemeName = "MetroLight";
             // 
-            // lblDownloadSpeedValue
+            // lblEmuDownloadSpeedValue
             // 
-            this.lblDownloadSpeedValue.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDownloadSpeedValue.IsDerivedStyle = true;
-            this.lblDownloadSpeedValue.Location = new System.Drawing.Point(146, 270);
-            this.lblDownloadSpeedValue.Name = "lblDownloadSpeedValue";
-            this.lblDownloadSpeedValue.Size = new System.Drawing.Size(80, 35);
-            this.lblDownloadSpeedValue.Style = MetroSet_UI.Enums.Style.Light;
-            this.lblDownloadSpeedValue.StyleManager = this.metroStyleManager;
-            this.lblDownloadSpeedValue.TabIndex = 11;
-            this.lblDownloadSpeedValue.Text = "Mb/s";
-            this.lblDownloadSpeedValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblDownloadSpeedValue.ThemeAuthor = "Narwin";
-            this.lblDownloadSpeedValue.ThemeName = "MetroLight";
+            this.lblEmuDownloadSpeedValue.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmuDownloadSpeedValue.IsDerivedStyle = true;
+            this.lblEmuDownloadSpeedValue.Location = new System.Drawing.Point(146, 270);
+            this.lblEmuDownloadSpeedValue.Name = "lblEmuDownloadSpeedValue";
+            this.lblEmuDownloadSpeedValue.Size = new System.Drawing.Size(80, 35);
+            this.lblEmuDownloadSpeedValue.Style = MetroSet_UI.Enums.Style.Light;
+            this.lblEmuDownloadSpeedValue.StyleManager = this.metroStyleManager;
+            this.lblEmuDownloadSpeedValue.TabIndex = 11;
+            this.lblEmuDownloadSpeedValue.Text = "Mb/s";
+            this.lblEmuDownloadSpeedValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblEmuDownloadSpeedValue.ThemeAuthor = "Narwin";
+            this.lblEmuDownloadSpeedValue.ThemeName = "MetroLight";
             // 
             // lblEmuPercent
             // 
             this.lblEmuPercent.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmuPercent.IsDerivedStyle = true;
-            this.lblEmuPercent.Location = new System.Drawing.Point(730, 359);
+            this.lblEmuPercent.Location = new System.Drawing.Point(730, 376);
             this.lblEmuPercent.Name = "lblEmuPercent";
             this.lblEmuPercent.Size = new System.Drawing.Size(50, 25);
             this.lblEmuPercent.Style = MetroSet_UI.Enums.Style.Light;
@@ -962,7 +965,7 @@ namespace Main
             this.EmuProgressBar.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.EmuProgressBar.DisabledProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
             this.EmuProgressBar.IsDerivedStyle = true;
-            this.EmuProgressBar.Location = new System.Drawing.Point(49, 359);
+            this.EmuProgressBar.Location = new System.Drawing.Point(50, 375);
             this.EmuProgressBar.Maximum = 100;
             this.EmuProgressBar.Minimum = 0;
             this.EmuProgressBar.Name = "EmuProgressBar";
@@ -996,7 +999,7 @@ namespace Main
             // 
             this.lblEmuDownloaded.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmuDownloaded.IsDerivedStyle = true;
-            this.lblEmuDownloaded.Location = new System.Drawing.Point(20, 305);
+            this.lblEmuDownloaded.Location = new System.Drawing.Point(20, 320);
             this.lblEmuDownloaded.Name = "lblEmuDownloaded";
             this.lblEmuDownloaded.Size = new System.Drawing.Size(120, 35);
             this.lblEmuDownloaded.Style = MetroSet_UI.Enums.Style.Light;
@@ -1097,7 +1100,7 @@ namespace Main
             this.TabTools.Controls.Add(this.ToolsProgressBar);
             this.TabTools.Controls.Add(this.lblToolDownloadSpeed);
             this.TabTools.Controls.Add(this.lblToolDownloadedTxt);
-            this.TabTools.Controls.Add(this.TxtEmuPercent);
+            this.TabTools.Controls.Add(this.lblToolsPercent);
             this.TabTools.Font = null;
             this.TabTools.ImageIndex = 0;
             this.TabTools.ImageKey = null;
@@ -1110,8 +1113,16 @@ namespace Main
             this.TabTools.TabIndex = 2;
             this.TabTools.Text = "Tools";
             this.TabTools.ThemeAuthor = "Narwin";
-            this.TabTools.ThemeName = "MetroLite";
+            this.TabTools.ThemeName = "MetroLight";
             this.TabTools.ToolTipText = "Tools";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(494, 116);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(267, 171);
+            this.pictureBox1.TabIndex = 29;
+            this.pictureBox1.TabStop = false;
             // 
             // BtnToolsInstallDirectX
             // 
@@ -1175,11 +1186,11 @@ namespace Main
             this.metroSetLabel1.Name = "metroSetLabel1";
             this.metroSetLabel1.Size = new System.Drawing.Size(115, 23);
             this.metroSetLabel1.Style = MetroSet_UI.Enums.Style.Light;
-            this.metroSetLabel1.StyleManager = null;
+            this.metroSetLabel1.StyleManager = this.metroStyleManager;
             this.metroSetLabel1.TabIndex = 26;
             this.metroSetLabel1.Text = "Useful tools";
             this.metroSetLabel1.ThemeAuthor = "Narwin";
-            this.metroSetLabel1.ThemeName = "MetroLite";
+            this.metroSetLabel1.ThemeName = "MetroLight";
             // 
             // btnToolsInstallRuntime
             // 
@@ -1246,7 +1257,7 @@ namespace Main
             this.lblToolsStatusValue.StyleManager = this.metroStyleManager;
             this.lblToolsStatusValue.TabIndex = 22;
             this.lblToolsStatusValue.Text = "Waiting ...";
-            this.lblToolsStatusValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblToolsStatusValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblToolsStatusValue.ThemeAuthor = "Narwin";
             this.lblToolsStatusValue.ThemeName = "MetroLight";
             // 
@@ -1276,7 +1287,7 @@ namespace Main
             this.lblToolsDownloadedValue.StyleManager = this.metroStyleManager;
             this.lblToolsDownloadedValue.TabIndex = 20;
             this.lblToolsDownloadedValue.Text = "MB";
-            this.lblToolsDownloadedValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblToolsDownloadedValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblToolsDownloadedValue.ThemeAuthor = "Narwin";
             this.lblToolsDownloadedValue.ThemeName = "MetroLight";
             // 
@@ -1291,7 +1302,7 @@ namespace Main
             this.lblToolsDownloadSpeedValue.StyleManager = this.metroStyleManager;
             this.lblToolsDownloadSpeedValue.TabIndex = 19;
             this.lblToolsDownloadSpeedValue.Text = "Mb/s";
-            this.lblToolsDownloadSpeedValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblToolsDownloadSpeedValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblToolsDownloadSpeedValue.ThemeAuthor = "Narwin";
             this.lblToolsDownloadSpeedValue.ThemeName = "MetroLight";
             // 
@@ -1303,7 +1314,7 @@ namespace Main
             this.ToolsProgressBar.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.ToolsProgressBar.DisabledProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
             this.ToolsProgressBar.IsDerivedStyle = true;
-            this.ToolsProgressBar.Location = new System.Drawing.Point(49, 359);
+            this.ToolsProgressBar.Location = new System.Drawing.Point(50, 375);
             this.ToolsProgressBar.Maximum = 100;
             this.ToolsProgressBar.Minimum = 0;
             this.ToolsProgressBar.Name = "ToolsProgressBar";
@@ -1348,20 +1359,20 @@ namespace Main
             this.lblToolDownloadedTxt.ThemeAuthor = "Narwin";
             this.lblToolDownloadedTxt.ThemeName = "MetroLight";
             // 
-            // TxtEmuPercent
+            // lblToolsPercent
             // 
-            this.TxtEmuPercent.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtEmuPercent.IsDerivedStyle = true;
-            this.TxtEmuPercent.Location = new System.Drawing.Point(730, 359);
-            this.TxtEmuPercent.Name = "TxtEmuPercent";
-            this.TxtEmuPercent.Size = new System.Drawing.Size(50, 25);
-            this.TxtEmuPercent.Style = MetroSet_UI.Enums.Style.Light;
-            this.TxtEmuPercent.StyleManager = this.metroStyleManager;
-            this.TxtEmuPercent.TabIndex = 18;
-            this.TxtEmuPercent.Text = "0%";
-            this.TxtEmuPercent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.TxtEmuPercent.ThemeAuthor = "Narwin";
-            this.TxtEmuPercent.ThemeName = "MetroLight";
+            this.lblToolsPercent.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblToolsPercent.IsDerivedStyle = true;
+            this.lblToolsPercent.Location = new System.Drawing.Point(731, 375);
+            this.lblToolsPercent.Name = "lblToolsPercent";
+            this.lblToolsPercent.Size = new System.Drawing.Size(50, 25);
+            this.lblToolsPercent.Style = MetroSet_UI.Enums.Style.Light;
+            this.lblToolsPercent.StyleManager = this.metroStyleManager;
+            this.lblToolsPercent.TabIndex = 18;
+            this.lblToolsPercent.Text = "0%";
+            this.lblToolsPercent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblToolsPercent.ThemeAuthor = "Narwin";
+            this.lblToolsPercent.ThemeName = "MetroLight";
             // 
             // metroSetSetTabPage1
             // 
@@ -1382,12 +1393,38 @@ namespace Main
             this.metroSetSetTabPage1.Name = "metroSetSetTabPage1";
             this.metroSetSetTabPage1.Size = new System.Drawing.Size(792, 404);
             this.metroSetSetTabPage1.Style = MetroSet_UI.Enums.Style.Light;
-            this.metroSetSetTabPage1.StyleManager = null;
+            this.metroSetSetTabPage1.StyleManager = this.metroStyleManager;
             this.metroSetSetTabPage1.TabIndex = 4;
             this.metroSetSetTabPage1.Text = "CoinOPS Setting";
             this.metroSetSetTabPage1.ThemeAuthor = "Narwin";
-            this.metroSetSetTabPage1.ThemeName = "MetroLite";
+            this.metroSetSetTabPage1.ThemeName = "MetroLight";
             this.metroSetSetTabPage1.ToolTipText = null;
+            // 
+            // BtnDownloadApply
+            // 
+            this.BtnDownloadApply.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnDownloadApply.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnDownloadApply.DisabledForeColor = System.Drawing.Color.Gray;
+            this.BtnDownloadApply.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.BtnDownloadApply.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.BtnDownloadApply.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.BtnDownloadApply.HoverTextColor = System.Drawing.Color.White;
+            this.BtnDownloadApply.IsDerivedStyle = true;
+            this.BtnDownloadApply.Location = new System.Drawing.Point(597, 361);
+            this.BtnDownloadApply.Name = "BtnDownloadApply";
+            this.BtnDownloadApply.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnDownloadApply.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BtnDownloadApply.NormalTextColor = System.Drawing.Color.White;
+            this.BtnDownloadApply.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.BtnDownloadApply.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.BtnDownloadApply.PressTextColor = System.Drawing.Color.White;
+            this.BtnDownloadApply.Size = new System.Drawing.Size(90, 35);
+            this.BtnDownloadApply.Style = MetroSet_UI.Enums.Style.Light;
+            this.BtnDownloadApply.StyleManager = this.metroStyleManager;
+            this.BtnDownloadApply.TabIndex = 29;
+            this.BtnDownloadApply.Text = "Apply";
+            this.BtnDownloadApply.ThemeAuthor = "Narwin";
+            this.BtnDownloadApply.ThemeName = "MetroLight";
             // 
             // pbSelectedTheme
             // 
@@ -1428,11 +1465,11 @@ namespace Main
             this.tbSettingTheme.ReadOnly = true;
             this.tbSettingTheme.Size = new System.Drawing.Size(220, 26);
             this.tbSettingTheme.Style = MetroSet_UI.Enums.Style.Light;
-            this.tbSettingTheme.StyleManager = null;
+            this.tbSettingTheme.StyleManager = this.metroStyleManager;
             this.tbSettingTheme.TabIndex = 25;
             this.tbSettingTheme.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbSettingTheme.ThemeAuthor = "Narwin";
-            this.tbSettingTheme.ThemeName = "MetroLite";
+            this.tbSettingTheme.ThemeName = "MetroLight";
             this.tbSettingTheme.UseSystemPasswordChar = false;
             this.tbSettingTheme.WatermarkText = "";
             // 
@@ -1444,12 +1481,12 @@ namespace Main
             this.lblSettingActualTheme.Name = "lblSettingActualTheme";
             this.lblSettingActualTheme.Size = new System.Drawing.Size(99, 26);
             this.lblSettingActualTheme.Style = MetroSet_UI.Enums.Style.Light;
-            this.lblSettingActualTheme.StyleManager = null;
+            this.lblSettingActualTheme.StyleManager = this.metroStyleManager;
             this.lblSettingActualTheme.TabIndex = 24;
             this.lblSettingActualTheme.Text = "Actual theme :";
             this.lblSettingActualTheme.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblSettingActualTheme.ThemeAuthor = "Narwin";
-            this.lblSettingActualTheme.ThemeName = "MetroLite";
+            this.lblSettingActualTheme.ThemeName = "MetroLight";
             // 
             // lblSettingTheme
             // 
@@ -1459,12 +1496,12 @@ namespace Main
             this.lblSettingTheme.Name = "lblSettingTheme";
             this.lblSettingTheme.Size = new System.Drawing.Size(82, 26);
             this.lblSettingTheme.Style = MetroSet_UI.Enums.Style.Light;
-            this.lblSettingTheme.StyleManager = null;
+            this.lblSettingTheme.StyleManager = this.metroStyleManager;
             this.lblSettingTheme.TabIndex = 23;
             this.lblSettingTheme.Text = "Theme :";
             this.lblSettingTheme.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblSettingTheme.ThemeAuthor = "Narwin";
-            this.lblSettingTheme.ThemeName = "MetroLite";
+            this.lblSettingTheme.ThemeName = "MetroLight";
             // 
             // BtnThemeDownload
             // 
@@ -1581,45 +1618,52 @@ namespace Main
             this.msThemeSwitch.UnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
             this.msThemeSwitch.SwitchedChanged += new MetroSet_UI.Controls.MetroSetSwitch.SwitchedChangedEventHandler(this.MsThemeSwitch_SwitchedChanged);
             // 
-            // BtnDownloadApply
+            // metroSetContextMenuStrip1
             // 
-            this.BtnDownloadApply.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.BtnDownloadApply.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.BtnDownloadApply.DisabledForeColor = System.Drawing.Color.Gray;
-            this.BtnDownloadApply.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.BtnDownloadApply.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
-            this.BtnDownloadApply.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
-            this.BtnDownloadApply.HoverTextColor = System.Drawing.Color.White;
-            this.BtnDownloadApply.IsDerivedStyle = true;
-            this.BtnDownloadApply.Location = new System.Drawing.Point(597, 361);
-            this.BtnDownloadApply.Name = "BtnDownloadApply";
-            this.BtnDownloadApply.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.BtnDownloadApply.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.BtnDownloadApply.NormalTextColor = System.Drawing.Color.White;
-            this.BtnDownloadApply.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
-            this.BtnDownloadApply.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
-            this.BtnDownloadApply.PressTextColor = System.Drawing.Color.White;
-            this.BtnDownloadApply.Size = new System.Drawing.Size(90, 35);
-            this.BtnDownloadApply.Style = MetroSet_UI.Enums.Style.Light;
-            this.BtnDownloadApply.StyleManager = this.metroStyleManager;
-            this.BtnDownloadApply.TabIndex = 29;
-            this.BtnDownloadApply.Text = "Apply";
-            this.BtnDownloadApply.ThemeAuthor = "Narwin";
-            this.BtnDownloadApply.ThemeName = "MetroLight";
+            this.metroSetContextMenuStrip1.IsDerivedStyle = true;
+            this.metroSetContextMenuStrip1.Name = "metroSetContextMenuStrip1";
+            this.metroSetContextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.metroSetContextMenuStrip1.Style = MetroSet_UI.Enums.Style.Light;
+            this.metroSetContextMenuStrip1.StyleManager = null;
+            this.metroSetContextMenuStrip1.ThemeAuthor = "Narwin";
+            this.metroSetContextMenuStrip1.ThemeName = "MetroLite";
             // 
-            // pictureBox1
+            // lblVersion
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(445, 112);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(267, 171);
-            this.pictureBox1.TabIndex = 29;
-            this.pictureBox1.TabStop = false;
+            this.lblVersion.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.IsDerivedStyle = true;
+            this.lblVersion.Location = new System.Drawing.Point(770, 549);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(68, 35);
+            this.lblVersion.Style = MetroSet_UI.Enums.Style.Light;
+            this.lblVersion.StyleManager = this.metroStyleManager;
+            this.lblVersion.TabIndex = 16;
+            this.lblVersion.Text = "Version :";
+            this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblVersion.ThemeAuthor = "Narwin";
+            this.lblVersion.ThemeName = "MetroLight";
+            // 
+            // lblVersionValue
+            // 
+            this.lblVersionValue.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersionValue.IsDerivedStyle = true;
+            this.lblVersionValue.Location = new System.Drawing.Point(837, 549);
+            this.lblVersionValue.Name = "lblVersionValue";
+            this.lblVersionValue.Size = new System.Drawing.Size(40, 35);
+            this.lblVersionValue.Style = MetroSet_UI.Enums.Style.Light;
+            this.lblVersionValue.StyleManager = this.metroStyleManager;
+            this.lblVersionValue.TabIndex = 17;
+            this.lblVersionValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblVersionValue.ThemeAuthor = "Narwin";
+            this.lblVersionValue.ThemeName = "MetroLight";
             // 
             // MainWindows
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 600);
+            this.Controls.Add(this.lblVersionValue);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.msThemeSwitch);
             this.Controls.Add(this.lblThemeTxt);
             this.Controls.Add(this.TabSelection);
@@ -1637,11 +1681,11 @@ namespace Main
             ((System.ComponentModel.ISupportInitialize)(this.SystemPictureBox)).EndInit();
             this.TabEmulators.ResumeLayout(false);
             this.TabTools.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.metroSetSetTabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbSelectedTheme)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbActualTheme)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1669,7 +1713,7 @@ namespace Main
         private MetroSet_UI.Controls.MetroSetLabel lblEmuDownloadSpeed;
         private MetroSet_UI.Controls.MetroSetLabel lblEmuDownloaded;
         private MetroSet_UI.Controls.MetroSetLabel lblEmuDownloadedValue;
-        private MetroSet_UI.Controls.MetroSetLabel lblDownloadSpeedValue;
+        private MetroSet_UI.Controls.MetroSetLabel lblEmuDownloadSpeedValue;
         private MetroSet_UI.Controls.MetroSetLabel lblEmuDownloadStatus;
         private MetroSet_UI.Controls.MetroSetLabel lblEmuStatusTxt;
         private MetroSet_UI.Controls.MetroSetLabel lblToolsStatusValue;
@@ -1689,7 +1733,7 @@ namespace Main
         private MetroSet_UI.Controls.MetroSetLabel TxtEmuDownloadLink;
         private MetroSet_UI.Controls.MetroSetTextBox TbEmuDownloadLink;
         private MetroSet_UI.Controls.MetroSetLabel TxtEmuFolderDestination;
-        private MetroSet_UI.Controls.MetroSetLabel TxtEmuPercent;
+        private MetroSet_UI.Controls.MetroSetLabel lblToolsPercent;
         private MetroSet_UI.Controls.MetroSetLabel TxtSysSelectSystem;
         private MetroSet_UI.Controls.MetroSetButton btnMainBrowse;
         private MetroSet_UI.Controls.MetroSetLabel lblThemeTxt;
@@ -1719,6 +1763,9 @@ namespace Main
         private System.Windows.Forms.PictureBox pbActualTheme;
         private MetroSet_UI.Controls.MetroSetButton BtnDownloadApply;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private MetroSet_UI.Controls.MetroSetLabel lblVersionValue;
+        private MetroSet_UI.Controls.MetroSetLabel lblVersion;
+        private MetroSet_UI.Controls.MetroSetContextMenuStrip metroSetContextMenuStrip1;
     }
 }
 
