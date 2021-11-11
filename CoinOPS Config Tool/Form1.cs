@@ -126,30 +126,24 @@ namespace Main
 
         private void SetPath()
         {
-            string FolderPath;
-
             targetCopsPath = tbMainCopsPath.Text;
             targetEmulatorsPath = targetCopsPath + "\\emulators\\";
-            FolderPath = targetEmulatorsPath;
-            CreateDir(FolderPath);
+            CreateDir(targetEmulatorsPath);
 
             tbMainEmuTxtPath.Text = targetEmulatorsPath;
 
             targetCollectionsPath = targetCopsPath + "\\collections\\";
-            FolderPath = targetCollectionsPath;
-            CreateDir(FolderPath);
+            CreateDir(targetCollectionsPath);
 
             tbMainColTxtPath.Text = targetCollectionsPath;
 
             targetLauncherPath = targetCopsPath + "\\launchers.windows\\";
-            FolderPath = targetLauncherPath;
-            CreateDir(FolderPath);
+            CreateDir(targetLauncherPath);
 
             tbMainLauncherTxtPath.Text = targetLauncherPath;
 
             targetThemePath = targetCopsPath + "\\layouts\\";
-            FolderPath = targetThemePath;
-            CreateDir(FolderPath);
+            CreateDir(targetThemePath);
 
         }
 
@@ -237,11 +231,10 @@ namespace Main
                 }
                 else
                 {
-                    targetFolder = targetCopsPath;
                     targetCollectionsPath = targetCopsPath + "\\collections\\";
                     string openDir = targetCollectionsPath + systemName;
                     CopySystemLauncher();
-                    ExtractFile(zipSource, targetFolder);
+                    ExtractFile(zipSource, targetCopsPath);
                     MetroSetMessageBox.Show(this, "All directories were created successfully");
                     if (Directory.Exists(openDir))
                     {
@@ -412,7 +405,7 @@ namespace Main
             string fileToDisplay;
             string logoToDisplay;
 
-        systemName = cbSysSelSystem.Text;
+            systemName = cbSysSelSystem.Text;
 
             string infoTxtPath = sourceSystemInfoPath + systemName + ".txt";
             if (File.Exists(infoTxtPath))
