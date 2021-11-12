@@ -19,6 +19,7 @@ namespace Main
         private readonly SystemsAndTools sysAndTools = new SystemsAndTools();
         private readonly FolderBrowserDialog folderbd = new FolderBrowserDialog();
         private readonly FileReadWrite fileReadAndWrite = new FileReadWrite();
+        private readonly Extractor extractor = new Extractor();
 
         // Source path variable
         private readonly string sourceLauncherPath = Directory.GetCurrentDirectory() + "\\launchers\\";
@@ -124,7 +125,7 @@ namespace Main
             //GetCopsTheme();
         }
 
-        private void SetPath()
+        private void SetPath()  // Create directories if missing
         {
             targetCopsPath = tbMainCopsPath.Text;
 
@@ -235,7 +236,7 @@ namespace Main
                     targetCollectionsPath = targetCopsPath + "\\collections\\";
                     string openDir = targetCollectionsPath + systemName;
                     CopySystemLauncher();
-                    ExtractFile(zipSource, targetCopsPath);
+                    extractor.ExtractFile(zipSource, targetCopsPath);
                     MetroSetMessageBox.Show(this, "All directories were created successfully");
                     if (Directory.Exists(openDir))
                     {
@@ -272,7 +273,7 @@ namespace Main
             {
                 zipSource = sysAndTools.downloadedFileName;
                 targetFolder = targetEmulatorsPath + selectedEmuName;
-                ExtractFile(zipSource, targetFolder);
+                extractor.ExtractFile(zipSource, targetFolder);
             }
 
         }
@@ -298,7 +299,7 @@ namespace Main
                 sysAndTools.SetEmuDownloadPath();
                 zipSource = sysAndTools.downloadedFileName;
 
-                ExtractFile(zipSource, tbEmuFolderDestination.Text);
+                extractor.ExtractFile(zipSource, tbEmuFolderDestination.Text);
             }
         }
 
@@ -316,7 +317,7 @@ namespace Main
                 string extractedFile = tempFolder + "VisualCppRedist_AIO_x86_x64_55.zip";
                 zipSource = tempFolder + "VisualCppRedist_AIO_x86_x64_55.zip";
                 targetFolder = tempFolder;
-                ExtractFile(zipSource, targetFolder);
+                extractor.ExtractFile(zipSource, targetFolder);
                 Process.Start(extractedFile);
             }
         }
@@ -341,7 +342,7 @@ namespace Main
                 if (!isDownloading)
                 {
                     zipSource = tempFolder + "TrrntZipUI281.zip";
-                    ExtractFile(zipSource, targetToolsPath);
+                    extractor.ExtractFile(zipSource, targetToolsPath);
                     Process.Start(torrentUI);
                 }
             }
@@ -509,7 +510,7 @@ namespace Main
                 MessageBox.Show("Setting File don't exist, creating ...");
 
 
-        }
+        } // TODO: Implement missing feature
 
         private void BtnThemeDownload_Click(object sender, EventArgs e)
         {
@@ -518,9 +519,9 @@ namespace Main
             DownloadingFile(sysAndTools.themeURL);
             if (!isDownloading)
             {
-                zipSource = sysAndTools.downloadedFileName;
+                //zipSource = sysAndTools.downloadedFileName;
                 targetFolder = targetThemePath;
-                ExtractFile(zipSource, targetThemePath);
+                extractor.ExtractFile(sysAndTools.downloadedFileName, targetThemePath);
             }
 
 
@@ -609,7 +610,7 @@ namespace Main
         }
 
 
-        // Show  and hide emulator tab download progress
+        // Show and hide emulator tab download progress
         private void ShowEMUDownloadProgress()
         {
             lblEmuDownloadedValue.Visible = true;
@@ -626,7 +627,7 @@ namespace Main
         }
 
 
-        // Show  and hide Tools tab download progress
+        // Show and hide Tools tab download progress
         private void ShowToolsDownloadProgress()
         {
             lblToolsDownloadedValue.Visible = true;
@@ -640,50 +641,6 @@ namespace Main
             lblToolsDownloadSpeedValue.Visible = false;
             lblToolsPercent.Visible = false;
             ToolsProgressBar.Visible = false;
-        }
-
-
-
-        // Extract and compress functions
-        public void ExtractFile(string zipSource, string targetFolder)
-        {
-
-            string zPath = "7za.exe"; //add to project and set CopyToOuputDir
-            bool isExtracting;
-
-            try
-            {
-                ProcessStartInfo pro = new ProcessStartInfo
-                {
-                    WindowStyle = ProcessWindowStyle.Normal,
-                    FileName = zPath,
-                    Arguments = string.Format("x \"{0}\" -y -o\"{1}\"", zipSource, targetFolder)
-                };
-                Process x = Process.Start(pro);
-                isExtracting = true;
-                statusTxt = " Extracting ...";
-                x.WaitForExit();
-                statusTxt = "Waiting";
-                MessageBox.Show("Extracted Completed");
-            }
-            catch (System.Exception)
-            {
-                //handle error
-                MessageBox.Show("An error has occured");
-            }
-            isExtracting = false;
-        }
-
-        public void CreateZip(string sourceName, string targetArchive)
-        {
-            ProcessStartInfo p = new ProcessStartInfo
-            {
-                FileName = "7za.exe",
-                Arguments = string.Format("a -tzip \"{0}\" \"{1}\" -mx=9", targetArchive, sourceName),
-                WindowStyle = ProcessWindowStyle.Hidden
-            };
-            Process x = Process.Start(p);
-            x.WaitForExit();
         }
 
     }
