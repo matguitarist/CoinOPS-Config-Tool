@@ -103,7 +103,7 @@ namespace Main
         // Select light or dark Theme
         private void MsThemeSwitch_SwitchedChanged(object sender)
         {
-            if (msThemeSwitch.Switched == false)//(metroStyleManager.Style == MetroSet_UI.Enums.Style.Light)
+            if (msThemeSwitch.Switched == false) //(metroStyleManager.Style == MetroSet_UI.Enums.Style.Light)
             {
                 metroStyleManager.Style = MetroSet_UI.Enums.Style.Dark;
             }
@@ -127,6 +127,7 @@ namespace Main
         private void SetPath()
         {
             targetCopsPath = tbMainCopsPath.Text;
+
             targetEmulatorsPath = targetCopsPath + "\\emulators\\";
             CreateDir(targetEmulatorsPath);
 
@@ -265,7 +266,7 @@ namespace Main
             EmuDownloadClicked = true;
             sysAndTools.SetEmuDownloadPath();
 
-            DownloadingFile(sender,e);
+            DownloadingFile(downloadLink);
 
             if (!isDownloading)
             {
@@ -307,13 +308,13 @@ namespace Main
         private void BtnInstallRuntime_Click(object sender, EventArgs e)
         {
             toolsDownloadClicked = true;
-            downloadLink = "https://github.com/abbodi1406/vcredist/releases/download/v0.51.0/VisualCppRedist_AIO_x86_x64_51.zip";
-            DownloadingFile(sender, e);
+            downloadLink = "https://github.com/abbodi1406/vcredist/releases/download/v0.55.0/VisualCppRedist_AIO_x86_x64_55.zip";
+            DownloadingFile(downloadLink);
             toolsDownloadClicked = false;
             if (!isDownloading)
             {
-                string extractedFile = tempFolder + "VisualCppRedist_AIO_x86_x64.exe";
-                zipSource = tempFolder + "VisualCppRedist_AIO_x86_x64_45.zip";
+                string extractedFile = tempFolder + "VisualCppRedist_AIO_x86_x64_55.zip";
+                zipSource = tempFolder + "VisualCppRedist_AIO_x86_x64_55.zip";
                 targetFolder = tempFolder;
                 ExtractFile(zipSource, targetFolder);
                 Process.Start(extractedFile);
@@ -334,12 +335,12 @@ namespace Main
             }
             else
             {
-                downloadLink = "https://www.romvault.com/trrntzip/download/TrrntZipUI280.zip";
-                DownloadingFile(sender, e);
+                downloadLink = "https://romvault.com/trrntzip/download/TrrntZipUI281.zip";
+                DownloadingFile(downloadLink);
 
                 if (!isDownloading)
                 {
-                    zipSource = tempFolder + "TrrntZipUI280.zip";
+                    zipSource = tempFolder + "TrrntZipUI281.zip";
                     ExtractFile(zipSource, targetToolsPath);
                     Process.Start(torrentUI);
                 }
@@ -359,7 +360,7 @@ namespace Main
             else
             {
                 downloadLink = "https://download.microsoft.com/download/1/7/1/1718CCC4-6315-4D8E-9543-8E28A4E18C4C/dxwebsetup.exe";
-                DownloadingFile(sender, e);
+                DownloadingFile(downloadLink);
                 if (!isDownloading)
                 {
                     zipSource = tempFolder + "dxwebsetup.exe";
@@ -514,9 +515,8 @@ namespace Main
         {
             sysAndTools.DownloadTheme();
             sysAndTools.selectedThemeName = cbSettingTheme.Text;
-            downloadLink = sysAndTools.themeURL;
 
-            DownloadingFile(sender, e);
+            DownloadingFile(sysAndTools.themeURL);
             if (!isDownloading)
             {
                 zipSource = sysAndTools.downloadedFileName;
@@ -530,10 +530,10 @@ namespace Main
 
 
         // Manage Downloading Function
-        public void DownloadingFile(object sender, EventArgs e)
+        public void DownloadingFile(string downloadURL)
         {
             string temp = Path.GetTempPath();
-            string path = $"{temp}\\{Path.GetFileName(downloadLink)}";
+            string path = $"{temp}\\{Path.GetFileName(downloadURL)}";
             bool fileExist = File.Exists(path);
 
             if (fileExist)
@@ -545,7 +545,7 @@ namespace Main
             else
             {
                 isDownloading = true;
-                httpDownloader = new HttpDownloader(downloadLink, path);
+                httpDownloader = new HttpDownloader(downloadURL, path);
                 httpDownloader.ProgressChanged += HttpDownloader_progressChanged;
                 httpDownloader.DownloadCompleted += HttpDownloader_DownloadCompleted;
                 httpDownloader.ErrorOccured += HttpDownloader_ErrorOccured;
