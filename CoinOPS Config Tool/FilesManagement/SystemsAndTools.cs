@@ -27,29 +27,29 @@ namespace CoinOPS_Config_Tool.FilesManagement
 
             if (selectedEmuName == "Mame")
             {
-                EmuURL = "https://github.com/mamedev/mame/releases/download/mame0234/mame0234b_64bit.exe";
-                downloadedFileName = "mame0234b_64bit.exe";
+                EmuURL = "https://github.com/mamedev/mame/releases/download/mame0237/mame0237b_64bit.exe";
+                downloadedFileName = "mame0237b_64bit.exe";
                 systemType = "Arcade Emulator";
             }
 
             else if (selectedEmuName == "RetroArch")
             {
-                EmuURL = "https://buildbot.libretro.com/stable/1.9.7/windows/x86_64/RetroArch.7z";
+                EmuURL = "https://buildbot.libretro.com/stable/1.9.13/windows/x86_64/RetroArch.7z";
                 downloadedFileName = tempFolder + "RetroArch.7z";
                 systemType = "Multi System Emulator";
             }
 
             else if (selectedEmuName == "Dolphin")
             {
-                EmuURL = "https://dl.dolphin-emu.org/builds/5a/6c/dolphin-master-5.0-14790-x64.7z";
-                downloadedFileName = "dolphin-master-5.0-14790-x64.7z";
+                EmuURL = "https://dl.dolphin-emu.org/builds/76/43/dolphin-master-5.0-15260-x64.7z";
+                downloadedFileName = "dolphin-master-5.0-15260-x64.7z";
                 systemType = "Gamecube and Wii";
             }
 
             else if (selectedEmuName == "Cemu")
             {
-                EmuURL = "https://cemu.info/releases/cemu_1.25.1.zip";
-                downloadedFileName = "cemu_1.25.1.zip";  // need to rename folder to cemu after extraction
+                EmuURL = "https://cemu.info/releases/cemu_1.25.6.zip";
+                downloadedFileName = "cemu_1.25.6.zip";  // need to rename folder to cemu after extraction
                 systemType = "Wii U Emulator";
             }
 
@@ -69,14 +69,14 @@ namespace CoinOPS_Config_Tool.FilesManagement
 
             else if (selectedEmuName == "Rpcs3")
             {
-                EmuURL = "https://github.com/RPCS3/rpcs3-binaries-win/releases/download/build-f745971cc8e85d8f71622c9e6ce25437febb50a9/rpcs3-v0.0.17-12611-f745971c_win64.7z";
-                downloadedFileName = "rpcs3-v0.0.17-12611-f745971c_win64.7z";
+                EmuURL = "https://github.com/RPCS3/rpcs3-binaries-win/releases/download/build-8b3ed7b5991d649c726c9b966b30032540ce598b/rpcs3-v0.0.19-13006-8b3ed7b5_win64.7z";
+                downloadedFileName = "rpcs3-v0.0.19-13006-8b3ed7b5_win64.7z";
                 systemType = "PS3 Emulator";
             }
 
             else if (selectedEmuName == "PPSSPP")
             {
-                EmuURL = "https://www.ppsspp.org/files/1_11_3/ppsspp_win.zip";
+                EmuURL = "https://www.ppsspp.org/files/1_12_3/ppsspp_win.zip";
                 downloadedFileName = "ppsspp_win.zip";
                 systemType = "Sony PSP Emulator";
             }
