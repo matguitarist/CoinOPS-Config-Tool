@@ -89,29 +89,29 @@ namespace CoinOPS_Config_Tool.FilesManagement
         }
 
 
-        public void DownloadTheme()
+        public void DownloadTheme(string themeName)
         {
             fileSource = tempFolder + downloadedFileName;
 
-            if (selectedThemeName == "Worlds")
+            if (themeName == "Worlds")
             {
                 themeURL = "https://github.com/matguitarist/CoinOPS-Config-Tool/raw/master/CoinOPS%20Config%20Tool/Themes/Worlds.7z";
                 downloadedFileName = tempFolder + "Worlds.7z";
             }
 
-            else if (selectedThemeName == "Animatic")
+            else if (themeName == "Animatic")
             {
                 themeURL = "http://retrofe.nl/Download/Themes/Animatic/Animatic.zip";
                 downloadedFileName = tempFolder + "Animatic.zip";
             }
 
-            else if (selectedThemeName == "Flatio")
+            else if (themeName == "Flatio")
             {
                 themeURL = "http://retrofe.nl/Download/Themes/Flatio/Flatio%2016x9.zip";
                 downloadedFileName = tempFolder + "Flatio%2016x9.zip";
             }
 
-            else if (selectedThemeName == "Pandora's Box HD Blue")
+            else if (themeName == "Pandora's Box HD Blue")
             {
 
                 themeURL = "http://retrofe.nl/Download/Themes/Pandora" + "'" + "s%20Box%20HD/Pandora's%20Box%20HD.zip";

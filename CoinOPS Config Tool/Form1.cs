@@ -513,8 +513,7 @@ namespace Main
 
         private void BtnThemeDownload_Click(object sender, EventArgs e)
         {
-            sysAndTools.DownloadTheme();
-            sysAndTools.selectedThemeName = cbSettingTheme.Text;
+            sysAndTools.DownloadTheme(cbSettingTheme.Text);
 
             DownloadingFile(sysAndTools.themeURL);
             if (!isDownloading)
